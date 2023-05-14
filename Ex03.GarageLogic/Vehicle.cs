@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
         private string m_OwnerPhoneNumber;
         private eVehicleStatus m_VehicleStatus;
 
-        public Vehicle(string i_ModelName, string i_LicenseNumber, float i_EnergyPercentage, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus)
+        public Vehicle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus)
         {
             m_LicenseNumber = i_LicenseNumber;
             m_Wheels = i_Wheels;
