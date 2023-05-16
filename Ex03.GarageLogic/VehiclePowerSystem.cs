@@ -11,17 +11,16 @@ namespace Ex03.GarageLogic
         protected float m_MaxEnergyAmount;
         protected float m_CurrentEnergyAmount;
 
-        public bool AddEnergy(float i_EnergyAmountToAdd)
+        public void AddEnergy(float i_EnergyAmountToAdd)
         {
-            bool result = false;
-
             if ((m_MaxEnergyAmount - m_CurrentEnergyAmount) >= i_EnergyAmountToAdd)
             {
                 m_CurrentEnergyAmount += i_EnergyAmountToAdd;
-                result = true;
             }
-
-            return result;
+            else
+            {
+                throw new OverTheLimitException(m_CurrentEnergyAmount, m_MaxEnergyAmount, i_EnergyAmountToAdd);
+            }
         }
     }
 }

@@ -16,10 +16,7 @@ namespace Ex03.GarageLogic
 
         public void Recharge(float i_BatteryTimeAmount)
         {
-            if (!base.AddEnergy(i_BatteryTimeAmount))
-            {
-                throw new OverTheLimitException(m_CurrentEnergyAmount, m_MaxEnergyAmount, i_BatteryTimeAmount);
-            }
+            AddEnergy(i_BatteryTimeAmount);
         }
     }
 }

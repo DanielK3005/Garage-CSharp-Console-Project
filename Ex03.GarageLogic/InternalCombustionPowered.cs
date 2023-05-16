@@ -30,10 +30,7 @@ namespace Ex03.GarageLogic
 
             if (m_FuelType == i_FuelType)
             {
-                if (!base.AddEnergy(i_FuelAmount))
-                {
-                    throw new OverTheLimitException(m_CurrentEnergyAmount, m_MaxEnergyAmount, i_FuelAmount);
-                }
+                base.AddEnergy(i_FuelAmount);
             }
             else
             {
