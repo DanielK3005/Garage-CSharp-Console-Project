@@ -13,21 +13,27 @@ namespace Ex03.GarageLogic
         private string m_OwnerName;
         private string m_OwnerPhoneNumber;
         private eVehicleStatus m_VehicleStatus;
-
-        public Vehicle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus)
-        {
-            m_LicenseNumber = i_LicenseNumber;
-            m_Wheels = i_Wheels;
-            m_OwnerName = i_OwnerName;
-            m_OwnerPhoneNumber = i_OwnerPhoneNumber;
-            m_VehicleStatus = i_VehicleStatus;
-        }
+        private float m_EnergyLeftPercentage;
+        private VehiclePowerSystem m_PowerSystem;
 
         public enum eVehicleStatus
         {
             InRepair,
             Repaired,
             Paid
+        }
+
+        
+
+        public Vehicle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem)
+        {
+            m_LicenseNumber = i_LicenseNumber;
+            m_Wheels = i_Wheels;
+            m_OwnerName = i_OwnerName;
+            m_OwnerPhoneNumber = i_OwnerPhoneNumber;
+            m_VehicleStatus = i_VehicleStatus;
+            m_EnergyLeftPercentage = i_EnergyLeftPercentage;
+            m_PowerSystem = i_PowerSystem;
         }
 
         public virtual string DisplayInformation()
