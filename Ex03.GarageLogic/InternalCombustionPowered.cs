@@ -41,8 +41,5 @@ namespace Ex03.GarageLogic
                 throw new NoMatchingFuelException();
             }
         }
-
-
-
     }
 }
