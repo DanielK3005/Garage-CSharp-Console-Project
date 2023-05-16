@@ -29,7 +29,7 @@ namespace Ex03.GarageLogic
 
         public void AddAirPressure(float i_AmountOfAirToAdd)
         {
-            if (i_AmountOfAirToAdd + this.m_CurrentAirPressure < m_MaxAirPressure)
+            if (i_AmountOfAirToAdd + this.m_CurrentAirPressure <= m_MaxAirPressure)
             {
                 this.m_CurrentAirPressure += i_AmountOfAirToAdd;
             }
