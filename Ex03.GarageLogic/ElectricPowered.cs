@@ -8,8 +8,6 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricPowered : VehiclePowerSystem
     {
-        private const string k_EnergyType = "Battery Hour";
-
         public ElectricPowered(float i_CurrentBatteryTime, float i_MaxBatteryTime)
         {
             m_CurrentEnergyAmount = i_CurrentBatteryTime;
@@ -18,9 +16,9 @@ namespace Ex03.GarageLogic
 
         public void Recharge(float i_BatteryTimeAmount)
         {
-            if (!AddEnergy(i_BatteryTimeAmount))
+            if (!base.AddEnergy(i_BatteryTimeAmount))
             {
-                throw new EnergyCapacityException(k_EnergyType);
+                throw new OverTheLimitException(m_CurrentEnergyAmount, m_MaxEnergyAmount, i_BatteryTimeAmount);
             }
         }
     }

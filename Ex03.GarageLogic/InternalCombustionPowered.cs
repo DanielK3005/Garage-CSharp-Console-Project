@@ -8,8 +8,6 @@ namespace Ex03.GarageLogic
 {
     internal class InternalCombustionPowered:VehiclePowerSystem
     {
-        private const string k_EnergyType = "Fuel";
-
         public enum eFuelType
         {
             Soler,
@@ -29,11 +27,12 @@ namespace Ex03.GarageLogic
 
         public void Refuel(float i_FuelAmount, eFuelType i_FuelType)
         {
+
             if (m_FuelType == i_FuelType)
             {
-                if (!AddEnergy(i_FuelAmount))
+                if (!base.AddEnergy(i_FuelAmount))
                 {
-                    throw new EnergyCapacityException("Fuel");
+                    throw new OverTheLimitException(m_CurrentEnergyAmount, m_MaxEnergyAmount, i_FuelAmount);
                 }
             }
             else
