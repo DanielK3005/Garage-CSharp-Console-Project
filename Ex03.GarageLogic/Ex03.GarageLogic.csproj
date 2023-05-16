@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="Motorcycle.cs" />
+    <Compile Include="OverTheLimitException.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>

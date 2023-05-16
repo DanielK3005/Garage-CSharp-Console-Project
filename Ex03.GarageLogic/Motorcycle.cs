@@ -10,8 +10,8 @@ namespace Ex03.GarageLogic
     {
         private eMotorcycleLicenseType m_LicenseType;
 
-        public Motorcycle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, eMotorcycleLicenseType i_LicenseType) 
-            :base(i_LicenseNumber, i_Wheels, i_OwnerName, i_OwnerPhoneNumber, i_VehicleStatus)
+        public Motorcycle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem, eMotorcycleLicenseType i_LicenseType) 
+        : base(i_LicenseNumber, i_Wheels, i_OwnerName, i_OwnerPhoneNumber, i_VehicleStatus, i_EnergyLeftPercentage, i_PowerSystem)
         {
            m_LicenseType = i_LicenseType;
         }

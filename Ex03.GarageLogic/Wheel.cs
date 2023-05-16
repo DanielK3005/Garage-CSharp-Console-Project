@@ -9,26 +9,33 @@ namespace Ex03.GarageLogic
     internal class Wheel
     {
         private string m_ManufacturerName;
-        private float m_AirPressure;
+        private float m_CurrentAirPressure;
         private float m_MaxAirPressure;
 
 
-        public Wheel(string i_ManufacturerName, float i_AirPressure, float i_MaxAirPressure)
+        public Wheel(string i_ManufacturerName, float i_CurrentAirPressure, float i_MaxAirPressure)
         {
             m_ManufacturerName = i_ManufacturerName;
-            m_AirPressure = i_AirPressure;
-            m_MaxAirPressure = i_MaxAirPressure;
-        }
-
-        public void AddAirPressure(float i_AirAddOn)
-        {
-            if (i_AirAddOn + m_AirPressure < m_MaxAirPressure)
+            if (i_CurrentAirPressure <= i_MaxAirPressure)
             {
-                m_AirPressure += i_AirAddOn;
+                m_CurrentAirPressure = i_CurrentAirPressure;
+                m_MaxAirPressure = i_MaxAirPressure;
             }
             else
             {
-                //TODO: Exception needed for add to much air pressure (over the max limit)
+                throw new ArgumentOutOfRangeException("current air pressure", String.Format("the air pressure must be between 0 to max pressure which is {0}.", i_MaxAirPressure));
+            }
+        }
+
+        public void AddAirPressure(float i_AmountOfAirToAdd)
+        {
+            if (i_AmountOfAirToAdd + this.m_CurrentAirPressure < m_MaxAirPressure)
+            {
+                this.m_CurrentAirPressure += i_AmountOfAirToAdd;
+            }
+            else
+            {
+                throw new OverTheLimitException(this.m_CurrentAirPressure, this.m_MaxAirPressure, i_AmountOfAirToAdd);
             }
         }
     }
