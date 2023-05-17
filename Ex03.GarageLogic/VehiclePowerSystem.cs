@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new OverTheLimitException(m_CurrentEnergyAmount, m_MaxEnergyAmount, i_EnergyAmountToAdd);
+                throw new ValueOutOfRangeException(m_CurrentEnergyAmount, m_MaxEnergyAmount);
             }
         }
     }
