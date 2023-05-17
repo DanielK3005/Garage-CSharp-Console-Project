@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class VehiclePowerSystem
+    public class VehiclePowerSystem
     {
         protected float m_MaxEnergyAmount;
         protected float m_CurrentEnergyAmount;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class Vehicle
+    public class Vehicle
     {
         private string m_LicenseNumber;
         private List<Wheel> m_Wheels;
@@ -23,6 +23,14 @@ namespace Ex03.GarageLogic
             Paid
         }
 
+        public enum eVehicleType
+        {
+            FuelMotorcycle,
+            ElectricMotorcycle,
+            FuelCar,
+            ElectricCar,
+            Truck
+        }
         
 
         public Vehicle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem)
