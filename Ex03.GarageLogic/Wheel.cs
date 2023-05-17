@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new OverTheLimitException(this.m_CurrentAirPressure, this.m_MaxAirPressure, i_AmountOfAirToAdd);
+                throw new ValueOutOfRangeException(this.m_CurrentAirPressure, this.m_MaxAirPressure);
             }
         }
     }

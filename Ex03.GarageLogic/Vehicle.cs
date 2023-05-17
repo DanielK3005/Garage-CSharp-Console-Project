@@ -53,5 +53,10 @@ namespace Ex03.GarageLogic
             vehicleInformation.AppendFormat("Vehicle status: {0}", m_VehicleStatus);
             return vehicleInformation.ToString();
         }
+
+        public void SetVehicleStatus(eVehicleStatus i_VehicleStatus)
+        {
+            m_VehicleStatus = i_VehicleStatus;
+        }
     }
 }

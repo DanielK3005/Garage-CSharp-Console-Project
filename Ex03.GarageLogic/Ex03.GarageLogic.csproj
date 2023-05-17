@@ -42,9 +42,10 @@
     <Compile Include="Car.cs" />
     <Compile Include="Costumer.cs" />
     <Compile Include="ElectricPowered.cs" />
+    <Compile Include="GarageManager.cs" />
     <Compile Include="InternalCombustionPowered.cs" />
     <Compile Include="Motorcycle.cs" />
-    <Compile Include="OverTheLimitException.cs" />
+    <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="NoMatchingFuelException.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="VehiclePowerSystem.cs" />
