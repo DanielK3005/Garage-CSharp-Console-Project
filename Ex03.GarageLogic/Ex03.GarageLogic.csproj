@@ -48,6 +48,7 @@
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="NoMatchingFuelException.cs" />
     <Compile Include="Truck.cs" />
+    <Compile Include="VehicleFactory.cs" />
     <Compile Include="VehiclePowerSystem.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>

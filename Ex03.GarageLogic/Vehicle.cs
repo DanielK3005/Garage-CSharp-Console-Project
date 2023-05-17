@@ -32,6 +32,18 @@ namespace Ex03.GarageLogic
             Truck
         }
         
+        public enum eFuelType
+        {
+            Octan95,
+            Octan96,
+            Octan98,
+            Soler
+        }
+
+        public Vehicle(VehiclePowerSystem i_PowerSystem)
+        {
+            m_PowerSystem = i_PowerSystem;
+        }
 
         public Vehicle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem)
         {

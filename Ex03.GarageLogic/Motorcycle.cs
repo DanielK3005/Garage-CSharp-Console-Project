@@ -10,6 +10,12 @@ namespace Ex03.GarageLogic
     {
         private eMotorcycleLicenseType m_LicenseType;
 
+        //create only powersystem constructor
+        public Motorcycle(VehiclePowerSystem i_PowerSystem) : base(i_PowerSystem)
+        {
+
+        }
+
         public Motorcycle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem, eMotorcycleLicenseType i_LicenseType) 
         : base(i_LicenseNumber, i_Wheels, i_OwnerName, i_OwnerPhoneNumber, i_VehicleStatus, i_EnergyLeftPercentage, i_PowerSystem)
         {
