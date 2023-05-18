@@ -8,51 +8,29 @@ namespace Ex03.GarageLogic
 {
     public class GarageManager
     {
-        private Dictionary<Customer, Vehicle> m_VehiclesList;
+        private Dictionary<string, Vehicle> m_VehiclesList;
 
         public GarageManager()
         {
-            m_VehiclesList = new Dictionary<Customer, Vehicle>();
+            m_VehiclesList = new Dictionary<string, Vehicle>();
         }
 
         public bool IsVehicleInTheGarage(string i_LicensedNumber)
         {
-            bool foundVehicle = false;
-            foreach (Vehicle var in m_VehiclesList.Values)
-            {
-                if (var.GetLicenseNumber().Equals(i_LicensedNumber))
-                {
-                    foundVehicle = true;
-                    break;
-                }
-            }
-
-            return foundVehicle;
+            return m_VehiclesList.ContainsKey(i_LicensedNumber);
         }
 
         public void ChangeVehicleGarageStatus(string i_LicensedNumber, Vehicle.eVehicleStatus i_SelectedVehicleStatus)
         {
-            Vehicle vehicle = findVehicleInTheGarageByLicenseNumber(i_LicensedNumber);
-
-            if (vehicle != null)
+            if (IsVehicleInTheGarage(i_LicensedNumber))
             {
+                Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
                 vehicle.SetVehicleStatus(i_SelectedVehicleStatus);
             }
-        }
-
-        private Vehicle findVehicleInTheGarageByLicenseNumber(string i_LicensedNumber)
-        {
-            Vehicle vehicle = null;
-            foreach (Vehicle var in m_VehiclesList.Values)
+            else
             {
-                if (var.GetLicenseNumber().Equals(i_LicensedNumber))
-                {
-                    vehicle = var;
-                    break;
-                }
+                //Throw a new NotInTheGargeException maybe?
             }
-
-            return vehicle;
         }
 
         public void CreateNewVehicle()
@@ -63,6 +41,7 @@ namespace Ex03.GarageLogic
         public List<string> GetLicensePlateNumbers(bool i_IsFiltered, Vehicle.eVehicleStatus i_FilteredStatus)
         {
             List<string> licensePlateNumbers = new List<string>();
+
             if (i_IsFiltered)
             {
                 foreach(Vehicle var in m_VehiclesList.Values)
@@ -86,40 +65,49 @@ namespace Ex03.GarageLogic
 
         public void FlateTheWheelsToMax(string i_LicensedNumber)
         {
-            Vehicle owner = findVehicleInTheGarageByLicenseNumber(i_LicensedNumber);
-
-            if (owner != null)
+            if (IsVehicleInTheGarage(i_LicensedNumber))
             {
-                foreach(Wheel var in owner.GetWheels())
+                Vehicle owner = m_VehiclesList[i_LicensedNumber];
+
+                foreach (Wheel var in owner.GetWheels())
                 {
                     var.MakeAirPressureMax();
                 }
             }
+            else
+            {
+                //Throw a new NotInTheGargeException maybe?
+            }
+
         }
 
         public void RefuelVehicle(string i_LicensedNumber, string i_FuelType, float i_FuelAmount)
         {
-            Vehicle vehicle = findVehicleInTheGarageByLicenseNumber(i_LicensedNumber);
-            InternalCombustionPowered.eFuelType fuelType = (InternalCombustionPowered.eFuelType) Enum.Parse(typeof(InternalCombustionPowered.eFuelType), i_FuelType);
-
-            if (vehicle != null)
+            if (IsVehicleInTheGarage(i_LicensedNumber))
             {
-                if(vehicle.IsFuelType())
+                Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
+                InternalCombustionPowered.eFuelType fuelType = (InternalCombustionPowered.eFuelType)Enum.Parse(typeof(InternalCombustionPowered.eFuelType), i_FuelType);
+
+                if (vehicle.IsFuelType())
                 {
-                    if(vehicle.GetVehiclePowerSystem() is InternalCombustionPowered f)
+                    if (vehicle.GetVehiclePowerSystem() is InternalCombustionPowered f)
                     {
                         f.Refuel(i_FuelAmount, fuelType);
                     }
                 }
             }
+            else
+            {
+                //Throw a new NotInTheGargeException maybe?
+            }
         }
 
         public void ChargeVehicle(string i_LicensedNumber, float i_ChargeAmount)
         {
-            Vehicle vehicle = findVehicleInTheGarageByLicenseNumber(i_LicensedNumber);
-
-            if (vehicle != null)
+            if (IsVehicleInTheGarage(i_LicensedNumber))
             {
+                Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
+
                 if (vehicle.IsElectricType())
                 {
                     if (vehicle.GetVehiclePowerSystem() is ElectricPowered e)
@@ -128,6 +116,11 @@ namespace Ex03.GarageLogic
                     }
                 }
             }
+            else
+            {
+                //Throw a new NotInTheGargeException maybe?
+            }
+
         }
     }
 }
