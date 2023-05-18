@@ -40,8 +40,11 @@ namespace Ex03.ConsoleUI
 
         public void AddNewVehicle()
         {
+            Vehicle newVehicle;
+
             m_ConsoleUI.DisplayVehicleDoesNotExists();
             m_ConsoleUI.DisplayAddNewVehicleMenu();
+            
         }
 
     }

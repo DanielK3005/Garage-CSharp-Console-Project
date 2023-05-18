@@ -33,17 +33,24 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Let's proceed to add a new vehicle.");
         }
 
+
+        //NEXT 2 FUNCTIONS ARE IN CONSTRUCTION
         public void DisplayAddNewVehicleMenu()
         {
-            string vehicleType;
 
+            
+
+            
+
+            
+        }
+
+        public void GetVehicleTypeFromUser()
+        {
             Console.WriteLine("Choose your vehicle type: ");
             Console.WriteLine();
             PrintListOfVehicleTypes();
 
-            vehicleType = Console.ReadLine();
-
-            
         }
 
         public void PrintListOfVehicleTypes()
