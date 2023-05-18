@@ -9,10 +9,12 @@ namespace Ex03.GarageLogic
     public class GarageManager
     {
         private Dictionary<string, Vehicle> m_VehiclesList;
+        private VehicleFactory m_VehicleFactory;
 
         public GarageManager()
         {
             m_VehiclesList = new Dictionary<string, Vehicle>();
+            m_VehicleFactory = new VehicleFactory();
         }
 
         public bool IsVehicleInTheGarage(string i_LicensedNumber)
@@ -33,9 +35,16 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void CreateNewVehicle()
+        public Vehicle CreateNewVehicle(Vehicle.eVehicleType i_VehicleType)
         {
+            if (m_VehicleFactory.TryCreateVehicle(i_VehicleType, out Vehicle vehicle))
+            {
+                //give inrepair status false
+                //add to the list
+            }
 
+            //I have returned the vehicle there to then use this in the userInterface to add the missing properties
+            return vehicle;
         }
 
         public List<string> GetLicensePlateNumbers(bool i_IsFiltered, Vehicle.eVehicleStatus i_FilteredStatus)

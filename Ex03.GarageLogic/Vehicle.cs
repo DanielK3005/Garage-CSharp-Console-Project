@@ -26,17 +26,24 @@ namespace Ex03.GarageLogic
 
         public enum eVehicleType
         {
-            FuelMotorcycle,
+            FuelMotorcycle = 0,
             ElectricMotorcycle,
             FuelCar,
             ElectricCar,
             Truck
         }
 
+        //not sure what prefix to use
+        public static readonly string[] r_VehicleType = { "Fuel Motorcycle", "Electric Motorcycle", "Fuel Car", "Electric Car", "Truck" };
+
         public Vehicle(VehiclePowerSystem i_PowerSystem, eVehicleType i_VehicleType)
         {
             m_PowerSystem = i_PowerSystem;
             m_VehicleType = i_VehicleType;
+            m_LicenseNumber = null;
+
+            //need to add wheels to the vehicle according to the vehicle type
+
         }
 
         public Vehicle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem)

@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
         private const float k_ElectricMotorcycleMaxBatteryAmount = 2.6f;
         private const float k_FuelMotorcycleMaxTankSize = 6.4f;
 
-        public bool TryCreateVehicle(string i_LicensePlate, Vehicle.eVehicleType i_VehicleType, out Vehicle o_Vehicle)
+        public bool TryCreateVehicle(Vehicle.eVehicleType i_VehicleType, out Vehicle o_Vehicle)
         {
             o_Vehicle = null;
             bool result = false;
@@ -41,9 +41,6 @@ namespace Ex03.GarageLogic
                     result = false; 
                     break;
             }
-
-            //I have dillema, should I create license plate and vehicle status here or in the ui?
-
 
             return result;
         }

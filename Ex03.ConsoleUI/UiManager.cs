@@ -15,6 +15,7 @@ namespace Ex03.ConsoleUI
         public UiManager()
         {
             m_ConsoleUI = new ConsoleUI();
+            m_GarageLogic = new GarageManager();
         }
 
         public void Run()
@@ -25,9 +26,23 @@ namespace Ex03.ConsoleUI
             {
                 lisenceNumber = m_ConsoleUI.GetLicensePlate();
 
+                if (m_GarageLogic.IsVehicleInTheGarage(lisenceNumber))
+                {
+                    m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
+                }
+                else
+                {
+                    AddNewVehicle();
+                }
             }
         }
 
+
+        public void AddNewVehicle()
+        {
+            m_ConsoleUI.DisplayVehicleDoesNotExists();
+            m_ConsoleUI.DisplayAddNewVehicleMenu();
+        }
 
     }
 }
