@@ -38,5 +38,10 @@ namespace Ex03.GarageLogic
                 throw new ValueOutOfRangeException(this.m_CurrentAirPressure, this.m_MaxAirPressure);
             }
         }
+
+        public void MakeAirPressureMax()
+        {
+            this.m_CurrentAirPressure += (this.m_MaxAirPressure - this.m_CurrentAirPressure);
+        }
     }
 }

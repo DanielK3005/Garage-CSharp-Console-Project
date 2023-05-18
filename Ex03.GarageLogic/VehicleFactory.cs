@@ -23,19 +23,19 @@ namespace Ex03.GarageLogic
             switch (i_VehicleType)
             {
                 case Vehicle.eVehicleType.ElectricCar:
-                    o_Vehicle = new Car(new ElectricPowered(0, k_ElectricCarMaxBatteryAmount));
+                    o_Vehicle = new Car(new ElectricPowered(0, k_ElectricCarMaxBatteryAmount), i_VehicleType);
                     break;
                 case Vehicle.eVehicleType.FuelCar:
-                    o_Vehicle = new Car(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan95,0, k_FuelCarMaxTankSize));
+                    o_Vehicle = new Car(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan95,0, k_FuelCarMaxTankSize), i_VehicleType);
                     break;
                 case Vehicle.eVehicleType.Truck:
-                    o_Vehicle = new Truck(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Soler, 0, k_FuelTruckMaxTankSize));
+                    o_Vehicle = new Truck(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Soler, 0, k_FuelTruckMaxTankSize), i_VehicleType);
                     break;
                 case Vehicle.eVehicleType.ElectricMotorcycle:
-                    o_Vehicle = new Motorcycle(new ElectricPowered(0, k_ElectricMotorcycleMaxBatteryAmount));
+                    o_Vehicle = new Motorcycle(new ElectricPowered(0, k_ElectricMotorcycleMaxBatteryAmount), i_VehicleType);
                     break;
                 case Vehicle.eVehicleType.FuelMotorcycle:
-                    o_Vehicle = new Motorcycle(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan98, 0, k_FuelMotorcycleMaxTankSize));
+                    o_Vehicle = new Motorcycle(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan98, 0, k_FuelMotorcycleMaxTankSize), i_VehicleType);
                     break;
                 default:
                     result = false; 
