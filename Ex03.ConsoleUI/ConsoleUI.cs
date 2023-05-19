@@ -98,36 +98,55 @@ namespace Ex03.ConsoleUI
             return "";
         }
 
-        public void GetVehicleInfoFromUser(Vehicle i_vehicle)
+        public void GetVehicleInfoFromUser(Vehicle i_vehicle, Vehicle.eVehicleType i_VehicleType)
         {
             VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
             CollectAndValidateCommonVehicleInfoFromUser(i_vehicle);
 
-            if(i_vehicle is Car)
+            //if(i_vehicle is Car)
+            //{
+            //    if(vehiclePowerSystem is InternalCombustionPowered)
+            //    {
+
+            //    }
+            //    else if (vehiclePowerSystem is ElectricPowered)
+            //    {
+
+            //    }
+            //}
+            //else if(i_vehicle is Motorcycle)
+            //{
+            //    if (vehiclePowerSystem is InternalCombustionPowered)
+            //    {
+
+            //    }
+            //    else if (vehiclePowerSystem is ElectricPowered)
+            //    {
+
+            //    }
+            //}
+            //else if(i_vehicle is Truck)
+            //{
+
+            //}
+
+            switch (i_VehicleType)
             {
-                if(vehiclePowerSystem is InternalCombustionPowered)
-                {
+                case Vehicle.eVehicleType.ElectricCar:
 
-                }
-                else if (vehiclePowerSystem is ElectricPowered)
-                {
+                    break;
+                case Vehicle.eVehicleType.FuelCar:
 
-                }
-            }
-            else if(i_vehicle is Motorcycle)
-            {
-                if (vehiclePowerSystem is InternalCombustionPowered)
-                {
+                    break;
+                case Vehicle.eVehicleType.FuelMotorcycle:
 
-                }
-                else if (vehiclePowerSystem is ElectricPowered)
-                {
+                    break;
+                case Vehicle.eVehicleType.ElectricMotorcycle:
 
-                }
-            }
-            else if(i_vehicle is Truck)
-            {
+                    break;
+                case Vehicle.eVehicleType.Truck:
 
+                    break;
             }
 
         }
