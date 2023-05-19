@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class InternalCombustionPowered:VehiclePowerSystem
+    public class InternalCombustionPowered:VehiclePowerSystem
     {
         public enum eFuelType
         {

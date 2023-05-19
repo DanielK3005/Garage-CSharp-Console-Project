@@ -8,10 +8,11 @@ namespace Ex03.GarageLogic
 {
     public class Vehicle
     {
+        private string m_VehicleModelName;
         private string m_LicenseNumber;
         private List<Wheel> m_Wheels;
-        private string m_OwnerName;
-        private string m_OwnerPhoneNumber;
+        //private string m_OwnerName;
+        //private string m_OwnerPhoneNumber;
         private eVehicleStatus m_VehicleStatus;
         private eVehicleType m_VehicleType;
         private float m_EnergyLeftPercentage;
@@ -50,8 +51,6 @@ namespace Ex03.GarageLogic
         {
             m_LicenseNumber = i_LicenseNumber;
             m_Wheels = i_Wheels;
-            m_OwnerName = i_OwnerName;
-            m_OwnerPhoneNumber = i_OwnerPhoneNumber;
             m_VehicleStatus = i_VehicleStatus;
             m_EnergyLeftPercentage = i_EnergyLeftPercentage;
             m_PowerSystem = i_PowerSystem;
@@ -61,8 +60,6 @@ namespace Ex03.GarageLogic
         {
             StringBuilder vehicleInformation = new StringBuilder();
             vehicleInformation.AppendFormat("License number: {0}", m_LicenseNumber);
-            vehicleInformation.AppendFormat("Owner name: {0}", m_OwnerName);
-            vehicleInformation.AppendFormat("Owner phone number: {0}", m_OwnerPhoneNumber);
             vehicleInformation.AppendFormat("Vehicle status: {0}", m_VehicleStatus);
             return vehicleInformation.ToString();
         }
@@ -100,6 +97,11 @@ namespace Ex03.GarageLogic
         public VehiclePowerSystem GetVehiclePowerSystem()
         {
             return m_PowerSystem;
+        }
+
+        public void setVehicleModelName(string i_ModelName)
+        {
+            m_VehicleModelName = i_ModelName;
         }
     }
 }

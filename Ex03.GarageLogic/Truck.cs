@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class Truck: Vehicle
+    public class Truck: Vehicle
     {
         private bool m_DangerousMaterials;
         private float m_CargoVolume;

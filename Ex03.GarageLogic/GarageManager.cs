@@ -37,13 +37,8 @@ namespace Ex03.GarageLogic
 
         public Vehicle CreateNewVehicle(Vehicle.eVehicleType i_VehicleType)
         {
-            if (m_VehicleFactory.TryCreateVehicle(i_VehicleType, out Vehicle vehicle))
-            {
-                //give inrepair status false
-                //add to the list
-            }
-
-            //I have returned the vehicle there to then use this in the userInterface to add the missing properties
+            m_VehicleFactory.TryCreateVehicle(i_VehicleType, out Vehicle vehicle);
+            
             return vehicle;
         }
 

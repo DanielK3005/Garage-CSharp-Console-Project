@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class ElectricPowered : VehiclePowerSystem
+    public class ElectricPowered : VehiclePowerSystem
     {
         public ElectricPowered(float i_CurrentBatteryTime, float i_MaxBatteryTime)
         {

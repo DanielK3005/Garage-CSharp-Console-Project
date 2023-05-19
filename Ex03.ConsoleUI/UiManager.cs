@@ -26,13 +26,22 @@ namespace Ex03.ConsoleUI
             {
                 lisenceNumber = m_ConsoleUI.GetLicensePlate();
 
-                if (m_GarageLogic.IsVehicleInTheGarage(lisenceNumber))
+                try
                 {
-                    m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
+                    if (m_GarageLogic.IsVehicleInTheGarage(lisenceNumber))
+                    {
+                        m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
+                    }
+                    else
+                    {
+                        AddNewVehicle();
+
+                        Console.ReadLine();
+                    }
                 }
-                else
+                catch(FormatException e)
                 {
-                    AddNewVehicle();
+                    Console.WriteLine(e.Message);
                 }
             }
         }
@@ -44,7 +53,14 @@ namespace Ex03.ConsoleUI
 
             m_ConsoleUI.DisplayVehicleDoesNotExists();
             m_ConsoleUI.DisplayAddNewVehicleMenu();
-            
+
+            m_ConsoleUI.GetVehicleTypeFromUser(out Vehicle.eVehicleType vehicleType);
+
+            newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType);
+
+            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle);
+
+            //m_GarageLogic.AddVehicleToGarage(newVehicle);
         }
 
     }

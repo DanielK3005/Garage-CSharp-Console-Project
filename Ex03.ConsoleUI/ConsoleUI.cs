@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ex03.GarageLogic;
-using static Ex03.GarageLogic.Vehicle;
 
 namespace Ex03.ConsoleUI
 {
@@ -45,13 +44,28 @@ namespace Ex03.ConsoleUI
             
         }
 
-        public void GetVehicleTypeFromUser()
+        public void GetVehicleTypeFromUser(out Vehicle.eVehicleType vehicleType)
         {
-            Console.WriteLine("Choose your vehicle type: ");
-            Console.WriteLine();
-            PrintListOfVehicleTypes();
+            do
+            {
+                Console.WriteLine("Enter the vehicle type:");
+                PrintListOfVehicleTypes();
 
+                int userInput;
+                bool isValidInput = int.TryParse(Console.ReadLine(), out userInput);
+
+                userInput -= 1;
+
+                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleType), userInput))
+                {
+                    vehicleType = (Vehicle.eVehicleType)userInput;
+                    break;
+                }
+
+                Console.WriteLine("Invalid input. Please try again.");
+            } while (true);
         }
+
 
         public void PrintListOfVehicleTypes()
         {
@@ -84,5 +98,77 @@ namespace Ex03.ConsoleUI
             return "";
         }
 
+        public void GetVehicleInfoFromUser(Vehicle i_vehicle)
+        {
+            VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
+            CollectAndValidateCommonVehicleInfoFromUser(i_vehicle);
+
+            if(i_vehicle is Car)
+            {
+                if(vehiclePowerSystem is InternalCombustionPowered)
+                {
+
+                }
+                else if (vehiclePowerSystem is ElectricPowered)
+                {
+
+                }
+            }
+            else if(i_vehicle is Motorcycle)
+            {
+                if (vehiclePowerSystem is InternalCombustionPowered)
+                {
+
+                }
+                else if (vehiclePowerSystem is ElectricPowered)
+                {
+
+                }
+            }
+            else if(i_vehicle is Truck)
+            {
+
+            }
+
+        }
+
+        public void CollectAndValidateCommonVehicleInfoFromUser(Vehicle i_vehicle)
+        {
+            GetFromTheUserTheVehicleModelName(i_vehicle);
+            GetFromUserTheAmountEnergyUnitsAvailable(i_vehicle);
+        }
+
+        public void GetFromUserTheAmountEnergyUnitsAvailable(Vehicle i_vehicle)
+        {
+            VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
+            float EnergySourceUnitsAvailable;
+            string input;
+
+            if (vehiclePowerSystem is ElectricPowered)
+            {
+                Console.WriteLine("What amount of battery hours the vehicle has?");
+            }
+            else if (vehiclePowerSystem is InternalCombustionPowered)
+            {
+                Console.WriteLine("What amount of fuel the vehicle has?");
+            }
+
+            input = Console.ReadLine();
+            
+            if(!float.TryParse(input, out EnergySourceUnitsAvailable))
+            {
+                throw new FormatException();
+            }
+
+            vehiclePowerSystem.AddEnergy(EnergySourceUnitsAvailable);
+        }
+
+        public void GetFromTheUserTheVehicleModelName(Vehicle i_vehicle)
+        {
+            string modelName;
+
+            Console.WriteLine("Provide the model name of the vehicle: ");
+            modelName = Console.ReadLine();
+        }
     }
 }
