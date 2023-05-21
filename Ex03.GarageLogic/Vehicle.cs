@@ -27,13 +27,13 @@ namespace Ex03.GarageLogic
             Paid
         }
 
-        public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Custumer)
+        public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Custumer, List<Wheel> i_Wheels)
         {
             m_PowerSystem = i_PowerSystem;
             m_VehicleType = i_VehicleType;
             m_LicenseNumber = null;
             m_Customer = i_Custumer;
-
+            m_Wheels = i_Wheels;
             m_Properties = new Dictionary<string, object>();
             m_PropertiesValidator = new Dictionary<string, object>();
         }
@@ -56,6 +56,27 @@ namespace Ex03.GarageLogic
             return m_VehicleStatus;
         }
 
+        public void ValidateAndAsignCommonData(string i_ModelName, float i_EnergyUnits, float i_AirPressure)
+        {
+            
+            m_VehicleModelName = i_ModelName;
+            
+
+            if(m_PowerSystem is ElectricPowered electric)
+            {
+                electric.Recharge(i_EnergyUnits);
+            }
+            else if(m_PowerSystem is InternalCombustionPowered fuel)
+            {
+                fuel.AddEnergy(i_EnergyUnits);
+            }
+
+            foreach(Wheel wheel in m_Wheels)
+            {
+                wheel.AddAirPressure(i_AirPressure);
+            }
+
+        }
         public void SetVehicleStatus(eVehicleStatus i_VehicleStatus)
         {
             m_VehicleStatus = i_VehicleStatus;

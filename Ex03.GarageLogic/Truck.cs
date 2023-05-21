@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
 {
     public class Truck: Vehicle
     {
-        public Truck(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_customer) : base(i_PowerSystem, i_VehicleType, i_customer)
+        public Truck(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_customer, List<Wheel> i_Wheel) : base(i_PowerSystem, i_VehicleType, i_customer, i_Wheel)
         {
             m_Properties.Add("DangerousMaterials", null);
             m_Properties.Add("CargoVolume", null);

@@ -51,15 +51,17 @@ namespace Ex03.ConsoleUI
         {
             Vehicle newVehicle;
             Customer owner;
+            string manufacturerWheelName;
 
             m_ConsoleUI.DisplayVehicleDoesNotExists();
             //m_ConsoleUI.DisplayAddNewVehicleMenu();
 
             owner = m_ConsoleUI.GetCustomerDetails();
+            manufacturerWheelName = m_ConsoleUI.GetManufacturerWheelName();
 
             m_ConsoleUI.GetVehicleTypeFromUser(out VehicleFactory.eVehicleType vehicleType);
 
-            newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType, owner);
+            newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType, owner, manufacturerWheelName);
 
             m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType);
 

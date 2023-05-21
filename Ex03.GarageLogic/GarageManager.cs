@@ -35,11 +35,16 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Vehicle CreateNewVehicle(VehicleFactory.eVehicleType i_VehicleType , Customer i_Owner)
+        public Vehicle CreateNewVehicle(VehicleFactory.eVehicleType i_VehicleType , Customer i_Owner, string i_ManufacturerName)
         {
-            m_VehicleFactory.TryCreateVehicle(i_VehicleType, out Vehicle vehicle , i_Owner);
+            m_VehicleFactory.TryCreateVehicle(i_VehicleType, out Vehicle vehicle , i_Owner, i_ManufacturerName);
             
             return vehicle;
+        }
+
+        public void ValidateAndConfirmVehicleData(Vehicle i_Vehicle, string i_ModelName, float i_EnergyUnits, float i_AirPressure, Dictionary<string, string> i_FurtherInfo)
+        {
+            i_Vehicle.ValidateAndAsignCommonData(i_ModelName, i_EnergyUnits, i_AirPressure);
         }
 
         public List<string> GetLicensePlateNumbers(bool i_IsFiltered, Vehicle.eVehicleStatus i_FilteredStatus)

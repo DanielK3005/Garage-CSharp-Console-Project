@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
 {
     public class Car: Vehicle
     {
-        public Car(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Costumer) : base(i_PowerSystem, i_VehicleType, i_Costumer)
+        public Car(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Costumer, List<Wheel> i_Wheel) : base(i_PowerSystem, i_VehicleType, i_Costumer, i_Wheel)
         {
             m_Properties.Add("Color", null);
             m_Properties.Add("NumberOfDoors", null);
