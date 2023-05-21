@@ -11,10 +11,9 @@ namespace Ex03.GarageLogic
         private string m_VehicleModelName;
         private string m_LicenseNumber;
         private List<Wheel> m_Wheels;
-        //private string m_OwnerName;
-        //private string m_OwnerPhoneNumber;
+        private Customer m_Customer;
         private eVehicleStatus m_VehicleStatus;
-        private eVehicleType m_VehicleType;
+        private VehicleFactory.eVehicleType m_VehicleType;
         private float m_EnergyLeftPercentage;
         private VehiclePowerSystem m_PowerSystem;
 
@@ -25,23 +24,12 @@ namespace Ex03.GarageLogic
             Paid
         }
 
-        public enum eVehicleType
-        {
-            FuelMotorcycle = 0,
-            ElectricMotorcycle,
-            FuelCar,
-            ElectricCar,
-            Truck
-        }
-
-        //not sure what prefix to use
-        public static readonly string[] r_VehicleType = { "Fuel Motorcycle", "Electric Motorcycle", "Fuel Car", "Electric Car", "Truck" };
-
-        public Vehicle(VehiclePowerSystem i_PowerSystem, eVehicleType i_VehicleType)
+        public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Owner)
         {
             m_PowerSystem = i_PowerSystem;
             m_VehicleType = i_VehicleType;
             m_LicenseNumber = null;
+            m_Customer = i_Owner;
 
             //need to add wheels to the vehicle according to the vehicle type
 
@@ -86,12 +74,12 @@ namespace Ex03.GarageLogic
 
         public bool IsFuelType()
         {
-            return ((m_VehicleType == eVehicleType.FuelMotorcycle) || (m_VehicleType == eVehicleType.Truck) || (m_VehicleType == eVehicleType.FuelCar));
+            return ((m_VehicleType == VehicleFactory.eVehicleType.FuelMotorcycle) || (m_VehicleType == VehicleFactory.eVehicleType.Truck) || (m_VehicleType == VehicleFactory.eVehicleType.FuelCar));
         }
 
         public bool IsElectricType()
         {
-            return ((m_VehicleType == eVehicleType.ElectricMotorcycle) || (m_VehicleType == eVehicleType.ElectricCar));
+            return ((m_VehicleType == VehicleFactory.eVehicleType.ElectricMotorcycle) || (m_VehicleType == VehicleFactory.eVehicleType.ElectricCar));
         }
 
         public VehiclePowerSystem GetVehiclePowerSystem()

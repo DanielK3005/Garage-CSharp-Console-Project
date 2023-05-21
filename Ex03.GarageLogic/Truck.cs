@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         private float m_CargoVolume;
 
         //empty constructor
-        public Truck(VehiclePowerSystem i_PowerSystem, eVehicleType i_VehicleType) : base(i_PowerSystem, i_VehicleType)
+        public Truck(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Owner) : base(i_PowerSystem, i_VehicleType, i_Owner)
         {
         }
 
