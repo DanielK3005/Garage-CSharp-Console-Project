@@ -99,7 +99,7 @@ namespace Ex03.ConsoleUI
             return "";
         }
 
-        public void GetVehicleInfoFromUser(Vehicle i_vehicle, Vehicle.eVehicleType i_VehicleType)
+        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, VehicleFactory.eVehicleType i_VehicleType)
         {
             string modelName;
             float energyUnits, airPressure;
@@ -109,6 +109,8 @@ namespace Ex03.ConsoleUI
             CollectCommonVehicleInfoFromUser(i_Vehicle, out modelName, out energyUnits, out airPressure);
 
             vehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
+
+
 
         }
 

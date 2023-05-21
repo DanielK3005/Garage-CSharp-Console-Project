@@ -12,19 +12,13 @@ namespace Ex03.GarageLogic
         private string m_VehicleModelName;
         private string m_LicenseNumber;
         private List<Wheel> m_Wheels;
-        //private string m_OwnerPhoneNumber;
-        //private string m_OwnerPhoneNumber;
-        private VehicleFactory.eVehicleType m_VehicleType;
-        //private string m_OwnerPhoneNumber;
-        private Customer m_Customer;
-        public Dictionary<string, object> m_Properties;
-        public Dictionary<string, object> m_PropertiesValidator;
         private VehicleFactory.eVehicleType m_VehicleType;
         private float m_EnergyLeftPercentage;
         private VehiclePowerSystem m_PowerSystem;
         private Customer m_Customer;
         public Dictionary<string, object> m_Properties;
         public Dictionary<string, object> m_PropertiesValidator;
+        public eVehicleStatus m_VehicleStatus;
 
         public enum eVehicleStatus
         {
@@ -38,7 +32,7 @@ namespace Ex03.GarageLogic
             m_PowerSystem = i_PowerSystem;
             m_VehicleType = i_VehicleType;
             m_LicenseNumber = null;
-            m_Customer = i_Owner;
+            m_Customer = i_Custumer;
 
             m_Properties = new Dictionary<string, object>();
             m_PropertiesValidator = new Dictionary<string, object>();
