@@ -26,6 +26,24 @@ namespace Ex03.GarageLogic
         {
             return m_PhoneNumber;
         }
+
+        public Vehicle.eVehicleStatus GetVehicleStatus()
+        {
+            return m_VehicleStatus;
+        }
+
+        
+
+        {
+            return m_VehicleStatus;
+        }
+
+        
+
+        {
+            return m_VehicleStatus;
+        }
+
         
 
     }

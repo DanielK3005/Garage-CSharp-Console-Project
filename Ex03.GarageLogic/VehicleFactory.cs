@@ -24,7 +24,7 @@ namespace Ex03.GarageLogic
             Truck
         }
 
-        public bool TryCreateVehicle(eVehicleType i_VehicleType, out Vehicle o_Vehicle , Customer i_Owner)
+        public bool TryCreateVehicle(eVehicleType i_VehicleType, out Vehicle o_Vehicle, Customer i_Costumer)
         {
             o_Vehicle = null;
             bool result = false;
@@ -32,19 +32,19 @@ namespace Ex03.GarageLogic
             switch (i_VehicleType)
             {
                 case eVehicleType.ElectricCar:
-                    o_Vehicle = new Car(new ElectricPowered(0, k_ElectricCarMaxBatteryAmount), i_VehicleType, i_Owner);
+                    o_Vehicle = new Car(new ElectricPowered(0, k_ElectricCarMaxBatteryAmount), i_VehicleType, i_Costumer);
                     break;
                 case eVehicleType.FuelCar:
-                    o_Vehicle = new Car(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan95,0, k_FuelCarMaxTankSize), i_VehicleType, i_Owner);
+                    o_Vehicle = new Car(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan95,0, k_FuelCarMaxTankSize), i_VehicleType, i_Costumer);
                     break;
                 case eVehicleType.Truck:
-                    o_Vehicle = new Truck(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Soler, 0, k_FuelTruckMaxTankSize), i_VehicleType, i_Owner);
+                    o_Vehicle = new Truck(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Soler, 0, k_FuelTruckMaxTankSize), i_VehicleType, i_Costumer);
                     break;
                 case eVehicleType.ElectricMotorcycle:
-                    o_Vehicle = new Motorcycle(new ElectricPowered(0, k_ElectricMotorcycleMaxBatteryAmount), i_VehicleType, i_Owner);
+                    o_Vehicle = new Motorcycle(new ElectricPowered(0, k_ElectricMotorcycleMaxBatteryAmount), i_VehicleType, i_Costumer);
                     break;
                 case eVehicleType.FuelMotorcycle:
-                    o_Vehicle = new Motorcycle(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan98, 0, k_FuelMotorcycleMaxTankSize), i_VehicleType, i_Owner);
+                    o_Vehicle = new Motorcycle(new InternalCombustionPowered(InternalCombustionPowered.eFuelType.Octan98, 0, k_FuelMotorcycleMaxTankSize), i_VehicleType, i_Costumer);
                     break;
                 default:
                     result = false; 

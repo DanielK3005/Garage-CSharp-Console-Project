@@ -61,7 +61,7 @@ namespace Ex03.ConsoleUI
 
             newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType, owner);
 
-            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType);
+            //m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType);
 
             //m_GarageLogic.AddVehicleToGarage(newVehicle);
         }

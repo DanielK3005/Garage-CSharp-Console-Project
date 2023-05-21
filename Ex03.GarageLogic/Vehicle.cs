@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ex03.GarageLogic;
 
 namespace Ex03.GarageLogic
 {
@@ -11,11 +12,19 @@ namespace Ex03.GarageLogic
         private string m_VehicleModelName;
         private string m_LicenseNumber;
         private List<Wheel> m_Wheels;
+        //private string m_OwnerPhoneNumber;
+        //private string m_OwnerPhoneNumber;
+        private VehicleFactory.eVehicleType m_VehicleType;
+        //private string m_OwnerPhoneNumber;
         private Customer m_Customer;
-        private eVehicleStatus m_VehicleStatus;
+        public Dictionary<string, object> m_Properties;
+        public Dictionary<string, object> m_PropertiesValidator;
         private VehicleFactory.eVehicleType m_VehicleType;
         private float m_EnergyLeftPercentage;
         private VehiclePowerSystem m_PowerSystem;
+        private Customer m_Customer;
+        public Dictionary<string, object> m_Properties;
+        public Dictionary<string, object> m_PropertiesValidator;
 
         public enum eVehicleStatus
         {
@@ -24,24 +33,20 @@ namespace Ex03.GarageLogic
             Paid
         }
 
-        public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Owner)
+        public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Custumer)
         {
             m_PowerSystem = i_PowerSystem;
             m_VehicleType = i_VehicleType;
             m_LicenseNumber = null;
             m_Customer = i_Owner;
 
-            //need to add wheels to the vehicle according to the vehicle type
-
+            m_Properties = new Dictionary<string, object>();
+            m_PropertiesValidator = new Dictionary<string, object>();
         }
 
-        public Vehicle(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem)
+        public Dictionary<string, object> GetProperties()
         {
-            m_LicenseNumber = i_LicenseNumber;
-            m_Wheels = i_Wheels;
-            m_VehicleStatus = i_VehicleStatus;
-            m_EnergyLeftPercentage = i_EnergyLeftPercentage;
-            m_PowerSystem = i_PowerSystem;
+            return m_Properties;
         }
 
         public virtual string DisplayInformation()
@@ -90,6 +95,11 @@ namespace Ex03.GarageLogic
         public void setVehicleModelName(string i_ModelName)
         {
             m_VehicleModelName = i_ModelName;
+        }
+
+        protected IEnumerable<object> GetEnumValues(Type enumType)
+        {
+            return Enum.GetValues(enumType).Cast<object>();
         }
     }
 }
