@@ -111,7 +111,6 @@ namespace Ex03.ConsoleUI
             vehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
 
 
-
         }
 
         public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)

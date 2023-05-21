@@ -43,6 +43,11 @@ namespace Ex03.GarageLogic
             return new Dictionary<string, object>();
         }
 
+        public virtual void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
+        {
+
+        }
+
         public Dictionary<string, object> GetProperties()
         {
             return m_Properties;

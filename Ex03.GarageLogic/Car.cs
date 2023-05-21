@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
             return keyValuePairs;
         }
 
-        public void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
+        public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
         {
             foreach (KeyValuePair<string, string> property in m_PropertiesDict)
             {
@@ -55,9 +55,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-
-
-
         public enum eCarColor
         {
             White = 0,
@@ -73,6 +70,5 @@ namespace Ex03.GarageLogic
             Four,
             Five
         }
-
     }
 }

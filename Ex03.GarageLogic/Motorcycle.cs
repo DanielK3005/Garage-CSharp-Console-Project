@@ -9,6 +9,9 @@ namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {
+        private eMotorcycleLicenseType m_LicenseType;
+        private int m_EngineVolume;
+
         public Motorcycle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Customer) : base(i_PowerSystem, i_VehicleType, i_Customer)
         {
             m_Properties.Add("LicenseType", null);
@@ -25,6 +28,35 @@ namespace Ex03.GarageLogic
             keyValuePairs.Add("EngineVolume", null);
 
             return keyValuePairs;
+        }
+
+        public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
+        {
+            foreach (KeyValuePair<string, string> property in m_PropertiesDict)
+            {
+                if (property.Key == "LicenseType")
+                {
+                    if (Enum.TryParse(property.Value, out eMotorcycleLicenseType type))
+                    {
+                        m_LicenseType = type;
+                    }
+                    else
+                    {
+                        // Exception or something?
+                    }
+                }
+                else if (property.Key == "EngineVolume")
+                {
+                    if (int.TryParse(property.Value, out int EngineVolume))
+                    {
+                        m_EngineVolume = EngineVolume;
+                    }
+                    else
+                    {
+                        // Exception or something?
+                    }
+                }
+            }
         }
 
         public enum eMotorcycleLicenseType
