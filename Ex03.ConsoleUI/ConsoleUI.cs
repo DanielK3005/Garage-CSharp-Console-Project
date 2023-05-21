@@ -33,18 +33,19 @@ namespace Ex03.ConsoleUI
         }
 
 
-        //NEXT 2 FUNCTIONS ARE IN CONSTRUCTION
-        public void DisplayAddNewVehicleMenu()
+        public Customer GetCustomerDetails()
         {
+            string nameInput, phoneInput;
 
-            
+            Console.WriteLine("what is your name?");
+            nameInput = Console.ReadLine();
+            Console.WriteLine("what is your phone number?");
+            phoneInput = Console.ReadLine();
 
-            
-
-            
+            return new Customer(nameInput, phoneInput);
         }
 
-        public void GetVehicleTypeFromUser(out Vehicle.eVehicleType vehicleType)
+        public void GetVehicleTypeFromUser(out VehicleFactory.eVehicleType vehicleType)
         {
             do
             {
@@ -56,9 +57,9 @@ namespace Ex03.ConsoleUI
 
                 userInput -= 1;
 
-                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleType), userInput))
+                if (isValidInput && Enum.IsDefined(typeof(VehicleFactory.eVehicleType), userInput))
                 {
-                    vehicleType = (Vehicle.eVehicleType)userInput;
+                    vehicleType = (VehicleFactory.eVehicleType)userInput;
                     break;
                 }
 
@@ -71,7 +72,7 @@ namespace Ex03.ConsoleUI
         {
             int listItemCounter = 1;
 
-            foreach (Vehicle.eVehicleType type in Enum.GetValues(typeof(Vehicle.eVehicleType)))
+            foreach (VehicleFactory.eVehicleType type in Enum.GetValues(typeof(VehicleFactory.eVehicleType)))
             {
                 Console.WriteLine("{0}. {1}", listItemCounter, type.ToString());
                 listItemCounter++;
@@ -98,103 +99,42 @@ namespace Ex03.ConsoleUI
             return "";
         }
 
-        public void GetVehicleInfoFromUser(Vehicle i_vehicle, Vehicle.eVehicleType i_VehicleType)
+        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, VehicleFactory.eVehicleType i_VehicleType)
         {
-            VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
-            Dictionary<string, string> vehicleInfo = CollectAndValidateCommonVehicleInfoFromUser(i_vehicle);
+            string modelName;
+            float energyUnits, airPressure;
+            Dictionary<string,string> vehicleExtraInfo;
 
-            //if(i_vehicle is Car)
-            //{
-            //    if(vehiclePowerSystem is InternalCombustionPowered)
-            //    {
+            VehiclePowerSystem vehiclePowerSystem = i_Vehicle.GetVehiclePowerSystem();
+            CollectCommonVehicleInfoFromUser(i_Vehicle, out modelName, out energyUnits, out airPressure);
 
-            //    }
-            //    else if (vehiclePowerSystem is ElectricPowered)
-            //    {
+            vehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
 
-            //    }
-            //}
-            //else if(i_vehicle is Motorcycle)
-            //{
-            //    if (vehiclePowerSystem is InternalCombustionPowered)
-            //    {
+        }
 
-            //    }
-            //    else if (vehiclePowerSystem is ElectricPowered)
-            //    {
+        public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)
+        {
+            Dictionary<string, string> properties = new Dictionary<string, string>();
 
-            //    }
-            //}
-            //else if(i_vehicle is Truck)
-            //{
-
-            //}
-
-            switch (i_VehicleType)
+            foreach (KeyValuePair<string, object> property in i_Vehicle.GetProperties())
             {
-                case Vehicle.eVehicleType.ElectricCar:
-                    vehicleInfo.Add("Car Color", GetColorOfTheCarFromUser());
-                    break;
-                case Vehicle.eVehicleType.FuelCar:
-                    vehicleInfo.Add("Car Color", GetColorOfTheCarFromUser());
-                    break;
-                case Vehicle.eVehicleType.FuelMotorcycle:
+                Console.WriteLine($"Enter the value for {property.Key}:");
+                string propertyValue = Console.ReadLine();
 
-                    break;
-                case Vehicle.eVehicleType.ElectricMotorcycle:
-
-                    break;
-                case Vehicle.eVehicleType.Truck:
-
-                    break;
+                properties[property.Key] = propertyValue;
             }
 
+            return properties;
         }
 
-        public Dictionary<string, string> CollectAndValidateCommonVehicleInfoFromUser(Vehicle i_vehicle)
+        public void CollectCommonVehicleInfoFromUser(Vehicle i_Vehicle, out string i_ModelName, out float i_EnergyUnits, out float i_AirPressure)
         {
-            Dictionary<string, string> vehicleInfo = new Dictionary<string, string>();
-            vehicleInfo.Add("Model", GetFromTheUserTheVehicleModelName());
-            vehicleInfo.Add("Energy Units", GetFromUserTheAmountEnergyUnitsAvailable(i_vehicle));
-            vehicleInfo.Add("Wheels Air", GetAirPressureWheelsFromUser());
-
-            return vehicleInfo;
+            i_ModelName = GetFromTheUserTheVehicleModelName();
+            i_EnergyUnits = GetFromUserTheAmountEnergyUnitsAvailable(i_Vehicle);
+            i_AirPressure = GetAirPressureWheelsFromUser();
         }
 
-        public string GetColorOfTheCarFromUser()
-        {
-            string input;
-            int choise;
-            bool validinput = false;
-            Console.WriteLine("what is the color of your car? (choose one option)");
-            PrintListOfCarColors();
-            input = Console.ReadLine();
-            validinput = int.TryParse(input, out choise);
-            choise -= 1;
-
-            while(!validinput || choise < 0 || choise > 3)
-            {
-                Console.WriteLine("invalid input!");
-                PrintListOfCarColors();
-                input = Console.ReadLine();
-                validinput = int.TryParse(input, out choise);
-            }
-
-            return Enum.GetName(typeof(Car.eCarColor), choise);
-        }
-
-        public void PrintListOfCarColors()
-        {
-            int listItemCounter = 1;
-
-            foreach (Car.eCarColor color in Enum.GetValues(typeof(Car.eCarColor)))
-            {
-                Console.WriteLine("{0}. {1}", listItemCounter, color.ToString());
-                listItemCounter++;
-            }
-        }
-
-        public string GetAirPressureWheelsFromUser()
+        public float GetAirPressureWheelsFromUser()
         {
             string input;
             float wheelsAirPressure;
@@ -202,14 +142,14 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("what is your wheels air pressure? (insert one number which indicates your vehicle wheels air pressure)");
             input= Console.ReadLine();
 
-            while(!float.TryParse(input, out wheelsAirPressure))
+            if(!float.TryParse(input, out wheelsAirPressure))
             {
-                throw new FormatException("invalid input!\nthe format that you need to enter to air pressure is a number.");
+                throw new FormatException();
             }
-            return input;
+            return wheelsAirPressure;
         }
 
-        public string GetFromUserTheAmountEnergyUnitsAvailable(Vehicle i_vehicle)
+        public float GetFromUserTheAmountEnergyUnitsAvailable(Vehicle i_vehicle)
         {
             VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
             float EnergySourceUnitsAvailable;
@@ -232,7 +172,7 @@ namespace Ex03.ConsoleUI
             }
             //we are not suppose to do that here
             //vehiclePowerSystem.AddEnergy(EnergySourceUnitsAvailable);
-            return input;
+            return EnergySourceUnitsAvailable;
         }
 
         public string GetFromTheUserTheVehicleModelName()
