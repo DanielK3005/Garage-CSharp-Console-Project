@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         private eMotorcycleLicenseType m_LicenseType;
         private int m_EngineVolume;
 
-        public Motorcycle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Customer) : base(i_PowerSystem, i_VehicleType, i_Customer)
+        public Motorcycle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Customer, List<Wheel> i_Wheels) : base(i_PowerSystem, i_VehicleType, i_Customer, i_Wheels)
         {
             m_Properties.Add("LicenseType", null);
             m_Properties.Add("EngineVolume", null);

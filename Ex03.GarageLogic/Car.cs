@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private eCarColor m_Color;
         private eNumberOfDoors m_NumberOfDoors;
 
-        public Car(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Costumer) : base(i_PowerSystem, i_VehicleType, i_Costumer)
+        public Car(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Costumer, List<Wheel> i_Wheels) : base(i_PowerSystem, i_VehicleType, i_Costumer, i_Wheels)
         {
 
         }

@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         private bool m_DangerousMaterials;
         private float m_CargoVolume;
 
-        public Truck(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_customer) : base(i_PowerSystem, i_VehicleType, i_customer)
+        public Truck(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Customer, List<Wheel> i_Wheels) : base(i_PowerSystem, i_VehicleType, i_Customer, i_Wheels)
         {
         }
 
