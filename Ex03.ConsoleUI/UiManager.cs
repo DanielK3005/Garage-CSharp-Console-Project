@@ -54,11 +54,11 @@ namespace Ex03.ConsoleUI
             m_ConsoleUI.DisplayVehicleDoesNotExists();
             m_ConsoleUI.DisplayAddNewVehicleMenu();
 
-            m_ConsoleUI.GetVehicleTypeFromUser(out Vehicle.eVehicleType vehicleType);
+            m_ConsoleUI.GetVehicleTypeFromUser(out VehicleFactory.eVehicleType vehicleType);
 
-            newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType);
+            //newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType);
 
-            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType);
+            //m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType);
 
             //m_GarageLogic.AddVehicleToGarage(newVehicle);
         }
