@@ -110,7 +110,12 @@ namespace Ex03.ConsoleUI
 
             vehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
 
+        }
 
+        public string GetManufacturerWheelName()
+        {
+            Console.WriteLine("what is the name of your vehicle wheels manufacturer?");
+            return Console.ReadLine();
         }
 
         public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)
