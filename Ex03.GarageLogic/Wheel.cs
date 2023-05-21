@@ -26,6 +26,12 @@ namespace Ex03.GarageLogic
                 throw new ArgumentOutOfRangeException("current air pressure", String.Format("the air pressure must be between 0 to max pressure which is {0}.", i_MaxAirPressure));
             }
         }
+        public Wheel(Wheel i_Wheel)
+        {
+            m_ManufacturerName = i_Wheel.m_ManufacturerName;
+            m_CurrentAirPressure = i_Wheel.m_CurrentAirPressure;
+            m_MaxAirPressure = i_Wheel.m_MaxAirPressure;
+        }
 
         public void AddAirPressure(float i_AmountOfAirToAdd)
         {

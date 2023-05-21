@@ -71,7 +71,7 @@ namespace Ex03.GarageLogic
             List<Wheel> listOfWheel = new List<Wheel>();
             for (int j = 0; j < i_NumberOfWheels; j++)
             {
-                listOfWheel.Add(i_Wheel);
+                listOfWheel.Add(new Wheel(i_Wheel));
             }
 
             return listOfWheel;

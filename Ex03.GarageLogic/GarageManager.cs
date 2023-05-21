@@ -45,6 +45,7 @@ namespace Ex03.GarageLogic
         public void ValidateAndConfirmVehicleData(Vehicle i_Vehicle, string i_ModelName, float i_EnergyUnits, float i_AirPressure, Dictionary<string, string> i_FurtherInfo)
         {
             i_Vehicle.ValidateAndAsignCommonData(i_ModelName, i_EnergyUnits, i_AirPressure);
+            i_Vehicle.AssignAndValidateProperties(i_FurtherInfo);
         }
 
         public List<string> GetLicensePlateNumbers(bool i_IsFiltered, Vehicle.eVehicleStatus i_FilteredStatus)

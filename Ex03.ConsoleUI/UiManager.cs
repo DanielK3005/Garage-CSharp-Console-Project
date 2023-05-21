@@ -39,7 +39,7 @@ namespace Ex03.ConsoleUI
                         Console.ReadLine();
                     }
                 }
-                catch(FormatException e)
+                catch(Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
@@ -51,7 +51,9 @@ namespace Ex03.ConsoleUI
         {
             Vehicle newVehicle;
             Customer owner;
-            string manufacturerWheelName;
+            string manufacturerWheelName, modelName;
+            float energyUnits, airPressure;
+            Dictionary<string, string> vehicleExtraInfo;
 
             m_ConsoleUI.DisplayVehicleDoesNotExists();
             //m_ConsoleUI.DisplayAddNewVehicleMenu();
@@ -63,8 +65,8 @@ namespace Ex03.ConsoleUI
 
             newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType, owner, manufacturerWheelName);
 
-            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType);
-
+            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType, out modelName, out energyUnits, out airPressure, out vehicleExtraInfo);
+            m_GarageLogic.ValidateAndConfirmVehicleData(newVehicle, modelName, energyUnits, airPressure, vehicleExtraInfo);
             //m_GarageLogic.AddVehicleToGarage(newVehicle);
         }
 

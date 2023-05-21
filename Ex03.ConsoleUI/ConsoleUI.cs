@@ -99,16 +99,12 @@ namespace Ex03.ConsoleUI
             return "";
         }
 
-        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, VehicleFactory.eVehicleType i_VehicleType)
+        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, VehicleFactory.eVehicleType i_VehicleType, out string o_ModelName, out float o_EnergyUnits, out float o_AirPressure, out Dictionary<string, string> o_VehicleExtraInfo)
         {
-            string modelName;
-            float energyUnits, airPressure;
-            Dictionary<string,string> vehicleExtraInfo;
-
             VehiclePowerSystem vehiclePowerSystem = i_Vehicle.GetVehiclePowerSystem();
-            CollectCommonVehicleInfoFromUser(i_Vehicle, out modelName, out energyUnits, out airPressure);
+            CollectCommonVehicleInfoFromUser(i_Vehicle, out o_ModelName, out o_EnergyUnits, out o_AirPressure);
 
-            vehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
+            o_VehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
 
         }
 
