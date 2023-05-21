@@ -14,10 +14,6 @@ namespace Ex03.GarageLogic
 
         public Truck(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_customer) : base(i_PowerSystem, i_VehicleType, i_customer)
         {
-            m_Properties.Add("DangerousMaterials", null);
-            m_Properties.Add("CargoVolume", null);
-
-            //m_PropertiesValidator.Add("DangerousMaterials", GetEnumValues(typeof(eDangerousMaterials)).ToList());
         }
 
         public override Dictionary<string, object> GetPropertiesDictionary()
