@@ -117,10 +117,20 @@ namespace Ex03.ConsoleUI
         public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)
         {
             Dictionary<string, string> properties = new Dictionary<string, string>();
+            Dictionary<string, object> propertiesDictionary = i_Vehicle.GetPropertiesDictionary();
 
-            foreach (KeyValuePair<string, object> property in i_Vehicle.GetProperties())
+            foreach (KeyValuePair<string, object> property in propertiesDictionary)
             {
                 Console.WriteLine($"Enter the value for {property.Key}:");
+                if(property.Value != null)
+                {
+                    Console.WriteLine($"Available options for {property.Key}:");
+                    foreach (var option in (Array)property.Value)
+                    {
+                        Console.WriteLine(option);
+                    }
+                }
+
                 string propertyValue = Console.ReadLine();
 
                 properties[property.Key] = propertyValue;

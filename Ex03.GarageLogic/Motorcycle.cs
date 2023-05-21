@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ex03.GarageLogic.Car;
 
 namespace Ex03.GarageLogic
 {
@@ -14,6 +15,16 @@ namespace Ex03.GarageLogic
             m_Properties.Add("EngineVolume", null);
 
             m_PropertiesValidator.Add("LicenseType", GetEnumValues(typeof(eMotorcycleLicenseType)).ToList());
+        }
+
+        public override Dictionary<string, object> GetPropertiesDictionary()
+        {
+            Dictionary<string, object> keyValuePairs = new Dictionary<string, object>();
+
+            keyValuePairs.Add("LicenseType", Enum.GetValues(typeof(eMotorcycleLicenseType)));
+            keyValuePairs.Add("EngineVolume", null);
+
+            return keyValuePairs;
         }
 
         public enum eMotorcycleLicenseType
