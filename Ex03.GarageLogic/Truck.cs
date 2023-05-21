@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Ex03.GarageLogic.Car;
 
 namespace Ex03.GarageLogic
 {
     public class Truck: Vehicle
     {
-        public Truck(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_customer) : base(i_PowerSystem, i_VehicleType, i_customer)
-        {
-            m_Properties.Add("DangerousMaterials", null);
-            m_Properties.Add("CargoVolume", null);
+        private bool m_DangerousMaterials;
+        private float m_CargoVolume;
 
-            m_PropertiesValidator.Add("DangerousMaterials", GetEnumValues(typeof(eDangerousMaterials)).ToList());
+        //empty constructor
+        public Truck(VehiclePowerSystem i_PowerSystem, eVehicleType i_VehicleType) : base(i_PowerSystem, i_VehicleType)
+        {
         }
 
-        public enum eDangerousMaterials
+        public Truck(string i_LicenseNumber, List<Wheel> i_Wheels, string i_OwnerName, string i_OwnerPhoneNumber, eVehicleStatus i_VehicleStatus, float i_EnergyLeftPercentage, VehiclePowerSystem i_PowerSystem, bool i_DangerousMaterials, float i_CargoVolume)
+        : base(i_LicenseNumber, i_Wheels, i_OwnerName, i_OwnerPhoneNumber, i_VehicleStatus, i_EnergyLeftPercentage, i_PowerSystem)
         {
-            Yes,
-            No
+            m_DangerousMaterials = i_DangerousMaterials;
+            m_CargoVolume = i_CargoVolume;
         }
 
         

@@ -35,9 +35,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Vehicle CreateNewVehicle(VehicleFactory.eVehicleType i_VehicleType, Customer i_customer)
+        public Vehicle CreateNewVehicle(Vehicle.eVehicleType i_VehicleType)
         {
-            m_VehicleFactory.TryCreateVehicle(i_VehicleType, out Vehicle vehicle, i_customer);
+            m_VehicleFactory.TryCreateVehicle(i_VehicleType, out Vehicle vehicle);
             
             return vehicle;
         }

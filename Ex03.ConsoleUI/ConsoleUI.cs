@@ -44,7 +44,7 @@ namespace Ex03.ConsoleUI
             
         }
 
-        public void GetVehicleTypeFromUser(out VehicleFactory.eVehicleType vehicleType)
+        public void GetVehicleTypeFromUser(out Vehicle.eVehicleType vehicleType)
         {
             do
             {
@@ -56,9 +56,9 @@ namespace Ex03.ConsoleUI
 
                 userInput -= 1;
 
-                if (isValidInput && Enum.IsDefined(typeof(VehicleFactory.eVehicleType), userInput))
+                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleType), userInput))
                 {
-                    vehicleType = (VehicleFactory.eVehicleType)userInput;
+                    vehicleType = (Vehicle.eVehicleType)userInput;
                     break;
                 }
 
@@ -71,7 +71,7 @@ namespace Ex03.ConsoleUI
         {
             int listItemCounter = 1;
 
-            foreach (VehicleFactory.eVehicleType type in Enum.GetValues(typeof(VehicleFactory.eVehicleType)))
+            foreach (Vehicle.eVehicleType type in Enum.GetValues(typeof(Vehicle.eVehicleType)))
             {
                 Console.WriteLine("{0}. {1}", listItemCounter, type.ToString());
                 listItemCounter++;
@@ -98,7 +98,7 @@ namespace Ex03.ConsoleUI
             return "";
         }
 
-        public void GetVehicleInfoFromUser(Vehicle i_vehicle, VehicleFactory.eVehicleType i_VehicleType)
+        public void GetVehicleInfoFromUser(Vehicle i_vehicle, Vehicle.eVehicleType i_VehicleType)
         {
             VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
             Dictionary<string, string> vehicleInfo = CollectAndValidateCommonVehicleInfoFromUser(i_vehicle);
@@ -132,19 +132,19 @@ namespace Ex03.ConsoleUI
 
             switch (i_VehicleType)
             {
-                case VehicleFactory.eVehicleType.ElectricCar:
+                case Vehicle.eVehicleType.ElectricCar:
                     vehicleInfo.Add("Car Color", GetColorOfTheCarFromUser());
                     break;
-                case VehicleFactory.eVehicleType.FuelCar:
+                case Vehicle.eVehicleType.FuelCar:
                     vehicleInfo.Add("Car Color", GetColorOfTheCarFromUser());
                     break;
-                case VehicleFactory.eVehicleType.FuelMotorcycle:
+                case Vehicle.eVehicleType.FuelMotorcycle:
 
                     break;
-                case VehicleFactory.eVehicleType.ElectricMotorcycle:
+                case Vehicle.eVehicleType.ElectricMotorcycle:
 
                     break;
-                case VehicleFactory.eVehicleType.Truck:
+                case Vehicle.eVehicleType.Truck:
 
                     break;
             }
