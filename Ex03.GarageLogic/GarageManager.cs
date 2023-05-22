@@ -62,11 +62,11 @@ namespace Ex03.GarageLogic
             i_Vehicle.AssignAndValidateProperties(i_FurtherInfo);
         }
 
-        public List<string> GetLicensePlateNumbers(bool i_IsFiltered, Vehicle.eVehicleStatus i_FilteredStatus)
+        public List<string> GetLicensePlateNumbers(Vehicle.eVehicleStatus i_FilteredStatus)
         {
             List<string> licensePlateNumbers = new List<string>();
 
-            if (i_IsFiltered)
+            if (i_FilteredStatus != Vehicle.eVehicleStatus.None)
             {
                 foreach(Vehicle var in m_VehiclesList.Values)
                 {

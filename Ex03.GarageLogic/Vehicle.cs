@@ -24,7 +24,8 @@ namespace Ex03.GarageLogic
         {
             InRepair,
             Repaired,
-            Paid
+            Paid,
+            None
         }
 
         public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Custumer, List<Wheel> i_Wheels)
