@@ -45,7 +45,7 @@ namespace Ex03.GarageLogic
                     }
                     else
                     {
-                        // Exception or something?
+                        throw new ArgumentException("you didnt type correctly one of the options above");
                     }
                 }
                 else if (property.Key == "CargoVolume")
@@ -56,7 +56,7 @@ namespace Ex03.GarageLogic
                     }
                     else
                     {
-                        // Exception or something?
+                        throw new ArgumentException("you insert the wrong input type, this field gets float only!");
                     }
                 }
             }

@@ -45,7 +45,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                //Throw a new NotInTheGargeException maybe?
+                throw new NotInTheGarageException(i_LicensedNumber);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                //Throw a new NotInTheGargeException maybe?
+                throw new NotInTheGarageException(i_LicensedNumber);
             }
 
         }
@@ -122,7 +122,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                //Throw a new NotInTheGargeException maybe?
+                throw new NotInTheGarageException(i_LicensedNumber);
             }
         }
 
@@ -142,7 +142,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                //Throw a new NotInTheGargeException maybe?
+                throw new NotInTheGarageException(i_LicensedNumber);
             }
 
         }
