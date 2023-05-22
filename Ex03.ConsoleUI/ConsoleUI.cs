@@ -14,6 +14,7 @@ namespace Ex03.ConsoleUI
         {
             string licenseNumber;
 
+            Console.Clear();
             Console.WriteLine("Please enter the vehicle's license number:");
             licenseNumber = Console.ReadLine();
 
@@ -114,6 +115,19 @@ namespace Ex03.ConsoleUI
             return Console.ReadLine();
         }
 
+        public void DisplayNewVehicleAdded(Vehicle i_Vehicle)
+        {
+            Console.Clear();
+            Console.WriteLine("New vehicle added to the garage.");
+            Console.WriteLine("Vehicle status has been set to \"inRepair\".");
+
+            string vehicleInfo = i_Vehicle.DisplayInformation();
+            Console.WriteLine(vehicleInfo);
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+
         public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)
         {
             Dictionary<string, string> properties = new Dictionary<string, string>();
@@ -161,6 +175,29 @@ namespace Ex03.ConsoleUI
             return wheelsAirPressure;
         }
 
+        public Vehicle.eVehicleStatus GetStatusFilterFromUser()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter the status to filter by:");
+            Array statusValues = Enum.GetValues(typeof(Vehicle.eVehicleStatus));
+
+            for (int i = 0; i < statusValues.Length; i++)
+            {
+                Console.WriteLine($"{i}. {statusValues.GetValue(i)}");
+            }
+
+            int userInput;
+            bool isValidInput = int.TryParse(Console.ReadLine(), out userInput);
+
+            if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput))
+            {
+                return (Vehicle.eVehicleStatus)userInput;
+            }
+
+            Console.WriteLine("Invalid input. Filter status set to None.");
+            return Vehicle.eVehicleStatus.None;
+        }
+
         public float GetFromUserTheAmountEnergyUnitsAvailable(Vehicle i_vehicle)
         {
             VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
@@ -196,5 +233,7 @@ namespace Ex03.ConsoleUI
 
             return modelName;
         }
+
+        
     }
 }
