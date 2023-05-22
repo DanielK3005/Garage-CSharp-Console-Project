@@ -34,7 +34,9 @@ namespace Ex03.ConsoleUI
                     }
                     else
                     {
-                        AddNewVehicle();
+                        AddNewVehicle(lisenceNumber);
+
+                        Console.WriteLine(m_GarageLogic.GetAllVehiclesInformation());
 
                         Console.ReadLine();
                     }
@@ -47,7 +49,7 @@ namespace Ex03.ConsoleUI
         }
 
 
-        public void AddNewVehicle()
+        public void AddNewVehicle(string i_LisenceNumber)
         {
             Vehicle newVehicle;
             Customer owner;
@@ -66,8 +68,8 @@ namespace Ex03.ConsoleUI
             newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType, owner, manufacturerWheelName);
 
             m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType, out modelName, out energyUnits, out airPressure, out vehicleExtraInfo);
-            m_GarageLogic.ValidateAndConfirmVehicleData(newVehicle, modelName, energyUnits, airPressure, vehicleExtraInfo);
-            //m_GarageLogic.AddVehicleToGarage(newVehicle);
+            m_GarageLogic.ValidateAndConfirmVehicleData(newVehicle, modelName, energyUnits, airPressure, vehicleExtraInfo, i_LisenceNumber);
+            m_GarageLogic.AddVehicleToGarage(i_LisenceNumber, newVehicle);
         }
 
     }

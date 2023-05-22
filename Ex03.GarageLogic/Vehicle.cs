@@ -56,8 +56,9 @@ namespace Ex03.GarageLogic
         public virtual string DisplayInformation()
         {
             StringBuilder vehicleInformation = new StringBuilder();
-            vehicleInformation.AppendFormat("License number: {0}", m_LicenseNumber);
-            vehicleInformation.AppendFormat("Vehicle status: {0}", m_VehicleStatus);
+            vehicleInformation.AppendLine($"License number: {m_LicenseNumber}");
+            vehicleInformation.AppendLine($"Vehicle status: {m_VehicleStatus}");
+
             return vehicleInformation.ToString();
         }
 
@@ -66,10 +67,12 @@ namespace Ex03.GarageLogic
             return m_VehicleStatus;
         }
 
-        public void ValidateAndAsignCommonData(string i_ModelName, float i_EnergyUnits, float i_AirPressure)
+        public void ValidateAndAsignCommonData(string i_ModelName, float i_EnergyUnits, float i_AirPressure, string i_LisenceNumber)
         {
             
             m_VehicleModelName = i_ModelName;
+            m_VehicleStatus = eVehicleStatus.InRepair;
+            m_LicenseNumber = i_LisenceNumber;
             
 
             if(m_PowerSystem is ElectricPowered electric)
@@ -87,6 +90,7 @@ namespace Ex03.GarageLogic
             }
 
         }
+
         public void SetVehicleStatus(eVehicleStatus i_VehicleStatus)
         {
             m_VehicleStatus = i_VehicleStatus;
