@@ -21,9 +21,20 @@ namespace Ex03.ConsoleUI
             return licenseNumber;
         }
 
+        public void PrintListOfLicenseNumber(List<string> i_LicenseNumber, Vehicle.eVehicleStatus i_VehicleStatus)
+        {
+            Console.WriteLine("Filtered license numbers by: {0}", i_VehicleStatus.ToString());
+
+
+
+        }
+
         public void DisplayVehicleAlreadyInTheGarage()
         {
-            Console.WriteLine("Vehicle already in the garage");
+            Console.Clear();
+            Console.WriteLine("Vehicle already in the garage. \nVehicle status has been updated to \"In repair\" ");
+            Console.WriteLine("Press any key to return to the menu...");
+            Console.ReadKey();
         }
 
         

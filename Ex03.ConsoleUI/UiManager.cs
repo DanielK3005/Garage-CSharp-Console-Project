@@ -115,11 +115,13 @@ namespace Ex03.ConsoleUI
 
         public void DisplayLicenseNumbers()
         {
-            List<string> lisencePlateNumbers;
+            List<string> licensePlateNumbers;
             Vehicle.eVehicleStatus chosenStatus;
 
             chosenStatus = m_ConsoleUI.GetStatusFilterFromUser();
-            lisencePlateNumbers = m_GarageLogic.GetLicensePlateNumbers(chosenStatus);
+            licensePlateNumbers = m_GarageLogic.GetLicensePlateNumbers(chosenStatus);
+
+            m_ConsoleUI.PrintListOfLicenseNumber(licensePlateNumbers, chosenStatus);
 
             Console.ReadKey();
         }
@@ -130,12 +132,18 @@ namespace Ex03.ConsoleUI
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
             if (m_GarageLogic.IsVehicleInTheGarage(lisenceNumber))
             {
-                m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
+                ChangeStatusToInRepairForExistingVehicleInGarage(lisenceNumber);
             }
             else
             {
                 AddNewVehicle(lisenceNumber);
             }
+        }
+
+        public void ChangeStatusToInRepairForExistingVehicleInGarage(string i_LicenseNumber)
+        {
+            m_GarageLogic.ChangeVehicleGarageStatus(i_LicenseNumber, Vehicle.eVehicleStatus.InRepair);
+            m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
         }
 
         public void AddNewVehicle(string i_LisenceNumber)
