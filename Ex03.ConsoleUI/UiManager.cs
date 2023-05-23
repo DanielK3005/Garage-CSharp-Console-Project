@@ -54,7 +54,7 @@ namespace Ex03.ConsoleUI
                             //ChangeVehicleStatus();
                             break;
                         case "4":
-                            //InflateWheels();
+                            InflateWheelsToMax();
                             break;
                         case "5":
                             //RefuelVehicle();
@@ -113,6 +113,15 @@ namespace Ex03.ConsoleUI
         //    }
         //}
 
+        public void InflateWheelsToMax()
+        {
+            string licensePlateNumber = m_ConsoleUI.GetLicensePlate();
+
+            m_GarageLogic.InflateTheWheelsToMax(licensePlateNumber);
+
+
+        }
+
         public void DisplayLicenseNumbers()
         {
             List<string> licensePlateNumbers;
@@ -123,7 +132,6 @@ namespace Ex03.ConsoleUI
 
             m_ConsoleUI.PrintListOfLicenseNumber(licensePlateNumbers, chosenStatus);
 
-            Console.ReadKey();
         }
 
 
