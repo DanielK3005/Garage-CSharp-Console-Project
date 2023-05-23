@@ -55,6 +55,11 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public override string ToString()
+        {
+            return $"{base.ToString()}\nColor: {m_Color.ToString()}\nNumber of doors: {m_NumberOfDoors.ToString()}";
+        }
+
         public enum eCarColor
         {
             White = 0,

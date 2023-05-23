@@ -37,5 +37,10 @@ namespace Ex03.GarageLogic
                 throw new NoMatchingFuelException(Enum.GetName(typeof(eFuelType), m_FuelType), Enum.GetName(typeof(eFuelType), i_FuelType));
             }
         }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} fuel type: {m_FuelType.ToString()}";
+        }
     }
 }

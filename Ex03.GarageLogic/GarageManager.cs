@@ -17,17 +17,17 @@ namespace Ex03.GarageLogic
             m_VehicleFactory = new VehicleFactory();
         }
 
-        public string GetAllVehiclesInformation()
+        public string GetVehicleInformation(string i_LicensedNumber)
         {
-            StringBuilder allVehiclesInformation = new StringBuilder();
-
-            foreach (Vehicle vehicle in m_VehiclesList.Values)
+            if (IsVehicleInTheGarage(i_LicensedNumber))
             {
-                allVehiclesInformation.AppendLine(vehicle.DisplayInformation());
-                allVehiclesInformation.AppendLine("--------------------------------------");
+                Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
+                return vehicle.ToString();
             }
-
-            return allVehiclesInformation.ToString();
+            else
+            {
+                throw new NotInTheGarageException(i_LicensedNumber);
+            }
         }
 
 
@@ -105,18 +105,17 @@ namespace Ex03.GarageLogic
 
         }
 
-        public void RefuelVehicle(string i_LicensedNumber, string i_FuelType, float i_FuelAmount)
+        public void RefuelVehicle(string i_LicensedNumber, InternalCombustionPowered.eFuelType i_FuelType, float i_FuelAmount)
         {
             if (IsVehicleInTheGarage(i_LicensedNumber))
             {
                 Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
-                InternalCombustionPowered.eFuelType fuelType = (InternalCombustionPowered.eFuelType)Enum.Parse(typeof(InternalCombustionPowered.eFuelType), i_FuelType);
 
                 if (vehicle.IsFuelType())
                 {
                     if (vehicle.GetVehiclePowerSystem() is InternalCombustionPowered f)
                     {
-                        f.Refuel(i_FuelAmount, fuelType);
+                        f.Refuel(i_FuelAmount, i_FuelType);
                     }
                 }
             }

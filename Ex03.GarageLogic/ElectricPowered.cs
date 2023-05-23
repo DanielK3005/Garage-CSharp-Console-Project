@@ -18,5 +18,10 @@ namespace Ex03.GarageLogic
         {
             AddEnergy(i_BatteryTimeAmount);
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

@@ -49,5 +49,10 @@ namespace Ex03.GarageLogic
         {
             this.m_CurrentAirPressure = this.m_MaxAirPressure;
         }
+
+        public override string ToString()
+        {
+            return $"\nmanufactuer name: {m_ManufacturerName}, current air pressure: {m_CurrentAirPressure}, max air pressure: {m_MaxAirPressure}";
+        }
     }
 }

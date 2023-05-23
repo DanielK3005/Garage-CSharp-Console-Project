@@ -29,7 +29,6 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     //Console.Clear();
-                    Console.WriteLine();
 
                     Console.WriteLine("Garage Menu:");
                     Console.WriteLine("1. Add a new vehicle to the garage");
@@ -58,13 +57,13 @@ namespace Ex03.ConsoleUI
                             InflateWheelsToMax();
                             break;
                         case "5":
-                            //RefuelVehicle();
+                            RefuelVehicle();
                             break;
                         case "6":
-                            //ChargeVehicle();
+                            ChargeVehicle();
                             break;
                         case "7":
-                            //DisplayFullVehicleInformation();
+                            DisplayFullVehicleInformation();
                             break;
                         case "8":
                             exit = true;
@@ -135,6 +134,30 @@ namespace Ex03.ConsoleUI
 
         }
 
+        public void RefuelVehicle()
+        {
+            string lisenceNumber = m_ConsoleUI.GetLicensePlate();
+            InternalCombustionPowered.eFuelType fuelType = m_ConsoleUI.GetFromUserFuelTypeForRefuel();
+            float fuelAmout = m_ConsoleUI.GetAmountOfFuelToRefuelFromUser();
+
+            m_GarageLogic.RefuelVehicle(lisenceNumber, fuelType, fuelAmout);
+        }
+
+        public void ChargeVehicle()
+        {
+            string lisenceNumber = m_ConsoleUI.GetLicensePlate();
+            float electricityAmount = m_ConsoleUI.GetAmountOfBatteryPercentageToChargeFromUser();
+
+            m_GarageLogic.ChargeVehicle(lisenceNumber, electricityAmount);
+        }
+
+        public void DisplayFullVehicleInformation()
+        {
+            string lisenceNumber = m_ConsoleUI.GetLicensePlate();
+            string vehicleInfo= m_GarageLogic.GetVehicleInformation(lisenceNumber);
+
+            m_ConsoleUI.DisplayVehicleInformation(vehicleInfo);
+        }
 
         public void ChangeVehicleStatus()
         {

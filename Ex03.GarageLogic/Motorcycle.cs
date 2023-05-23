@@ -59,6 +59,11 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public override string ToString()
+        {
+            return $"{base.ToString()}\nLicense type: {m_LicenseType.ToString()}\nEngine volume: {m_EngineVolume}";
+        }
+
         public enum eMotorcycleLicenseType
         {
             A1,

@@ -62,6 +62,11 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public override string ToString()
+        {
+            return $"{base.ToString()}\nHave dangerous materials: {m_DangerousMaterials.ToString()}\nCargo volume: {m_CargoVolume}";
+        }
+
         public enum eDangerousMaterials
         {
             True = 0,

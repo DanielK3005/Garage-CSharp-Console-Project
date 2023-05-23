@@ -22,5 +22,10 @@ namespace Ex03.GarageLogic
                 throw new ValueOutOfRangeException(m_CurrentEnergyAmount, m_MaxEnergyAmount);
             }
         }
+
+        public override string ToString()
+        {
+            return $"current amonut: {m_CurrentEnergyAmount} max amount: {m_MaxEnergyAmount}";
+        }
     }
 }
