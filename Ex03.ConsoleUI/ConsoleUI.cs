@@ -10,6 +10,19 @@ namespace Ex03.ConsoleUI
     internal class ConsoleUI
     {
         
+        private void pressAnyKeyToReturnToTheMenu()
+        {
+            Console.WriteLine("Press any key to return to the menu...");
+            Console.ReadKey();
+        }
+
+        public void DisplayInflatedWheelsToMax()
+        {
+            Console.Clear();
+            Console.WriteLine("All the wheels of the vehicle had been inflated to max pressure");
+            pressAnyKeyToReturnToTheMenu();
+        }
+
         public string GetLicensePlate()
         {
             string licenseNumber;
@@ -21,11 +34,24 @@ namespace Ex03.ConsoleUI
             return licenseNumber;
         }
 
-        public void PrintListOfLicenseNumber(List<string> i_LicenseNumber, Vehicle.eVehicleStatus i_VehicleStatus)
+        public void PrintListOfLicenseNumber(List<string> i_LicenseNumbers, Vehicle.eVehicleStatus i_VehicleStatus)
         {
+            Console.Clear();
             Console.WriteLine("Filtered license numbers by: {0}", i_VehicleStatus.ToString());
 
+            if (i_LicenseNumbers.Count() != 0)
+            {
+                foreach (string licenseNumber in i_LicenseNumbers)
+                {
+                    Console.WriteLine(licenseNumber);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No vehicles found!");
+            }
 
+            pressAnyKeyToReturnToTheMenu();
 
         }
 
@@ -33,8 +59,7 @@ namespace Ex03.ConsoleUI
         {
             //Console.Clear();
             Console.WriteLine("Vehicle already in the garage. \nVehicle status has been updated to \"In repair\" ");
-            Console.WriteLine("Press any key to return to the menu...");
-            Console.ReadKey();
+            pressAnyKeyToReturnToTheMenu();
         }
 
         
@@ -135,8 +160,7 @@ namespace Ex03.ConsoleUI
             string vehicleInfo = i_Vehicle.DisplayInformation();
             Console.WriteLine(vehicleInfo);
 
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            pressAnyKeyToReturnToTheMenu();
         }
 
         public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)

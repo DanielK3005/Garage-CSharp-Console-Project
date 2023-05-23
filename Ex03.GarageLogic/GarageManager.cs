@@ -87,13 +87,13 @@ namespace Ex03.GarageLogic
             return licensePlateNumbers;
         }
 
-        public void FlateTheWheelsToMax(string i_LicensedNumber)
+        public void InflateTheWheelsToMax(string i_LicensedNumber)
         {
             if (IsVehicleInTheGarage(i_LicensedNumber))
             {
-                Vehicle owner = m_VehiclesList[i_LicensedNumber];
+                Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
 
-                foreach (Wheel var in owner.GetWheels())
+                foreach (Wheel var in vehicle.GetWheels())
                 {
                     var.MakeAirPressureMax();
                 }

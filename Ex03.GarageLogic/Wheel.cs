@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
 
         public void MakeAirPressureMax()
         {
-            this.m_CurrentAirPressure += (this.m_MaxAirPressure - this.m_CurrentAirPressure);
+            this.m_CurrentAirPressure = this.m_MaxAirPressure;
         }
     }
 }
