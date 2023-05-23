@@ -28,7 +28,8 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    Console.Clear();
+                    //Console.Clear();
+                    Console.WriteLine();
 
                     Console.WriteLine("Garage Menu:");
                     Console.WriteLine("1. Add a new vehicle to the garage");
@@ -51,7 +52,7 @@ namespace Ex03.ConsoleUI
                             DisplayLicenseNumbers();
                             break;
                         case "3":
-                            //ChangeVehicleStatus();
+                            ChangeVehicleStatus();
                             break;
                         case "4":
                             //InflateWheels();
@@ -124,6 +125,15 @@ namespace Ex03.ConsoleUI
             m_ConsoleUI.PrintListOfLicenseNumber(licensePlateNumbers, chosenStatus);
 
             Console.ReadKey();
+        }
+
+
+        public void ChangeVehicleStatus()
+        {
+            string lisenceNumber = m_ConsoleUI.GetLicensePlate();
+            Vehicle.eVehicleStatus newStatus = m_ConsoleUI.GetStatusFilterFromUser();
+
+            m_GarageLogic.ChangeVehicleGarageStatus(lisenceNumber, newStatus);
         }
 
 

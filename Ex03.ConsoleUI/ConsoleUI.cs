@@ -14,7 +14,7 @@ namespace Ex03.ConsoleUI
         {
             string licenseNumber;
 
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Please enter the vehicle's license number:");
             licenseNumber = Console.ReadLine();
 
@@ -31,7 +31,7 @@ namespace Ex03.ConsoleUI
 
         public void DisplayVehicleAlreadyInTheGarage()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Vehicle already in the garage. \nVehicle status has been updated to \"In repair\" ");
             Console.WriteLine("Press any key to return to the menu...");
             Console.ReadKey();
@@ -128,7 +128,7 @@ namespace Ex03.ConsoleUI
 
         public void DisplayNewVehicleAdded(Vehicle i_Vehicle)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("New vehicle added to the garage.");
             Console.WriteLine("Vehicle status has been set to \"inRepair\".");
 
@@ -186,9 +186,10 @@ namespace Ex03.ConsoleUI
             return wheelsAirPressure;
         }
 
+        //i add do while to this function
         public Vehicle.eVehicleStatus GetStatusFilterFromUser()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Enter the status to filter by:");
             Array statusValues = Enum.GetValues(typeof(Vehicle.eVehicleStatus));
 
@@ -198,15 +199,20 @@ namespace Ex03.ConsoleUI
             }
 
             int userInput;
-            bool isValidInput = int.TryParse(Console.ReadLine(), out userInput);
-
-            if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput))
+            bool isValidInput = false;
+            do
             {
-                return (Vehicle.eVehicleStatus)userInput;
-            }
+                isValidInput = int.TryParse(Console.ReadLine(), out userInput);
 
-            Console.WriteLine("Invalid input. Filter status set to None.");
-            return Vehicle.eVehicleStatus.None;
+                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput))
+                {
+                    break;
+                }
+
+                Console.WriteLine("Invalid input. Filter status set to None.");
+            } while (!isValidInput);
+
+            return (Vehicle.eVehicleStatus)userInput;
         }
 
         public float GetFromUserTheAmountEnergyUnitsAvailable(Vehicle i_vehicle)
