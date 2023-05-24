@@ -28,7 +28,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
-                    //Console.Clear();
+                    Console.Clear();
 
                     Console.WriteLine("Garage Menu:");
                     Console.WriteLine("1. Add a new vehicle to the garage");
@@ -70,6 +70,7 @@ namespace Ex03.ConsoleUI
                             break;
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
+                            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
                             break;
                     }
 
@@ -77,41 +78,10 @@ namespace Ex03.ConsoleUI
                 catch (Exception e)
                 {
                     Console.WriteLine("An error occurred: " + e.Message);
+                    m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
                 }
             }
         }
-
-
-
-        //public void Run()
-        //{
-        //    string lisenceNumber;
-
-        //    while (true)
-        //    {
-        //        lisenceNumber = m_ConsoleUI.GetLicensePlate();
-
-        //        try
-        //        {
-        //            if (m_GarageLogic.IsVehicleInTheGarage(lisenceNumber))
-        //            {
-        //                m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
-        //            }
-        //            else
-        //            {
-        //                AddNewVehicle(lisenceNumber);
-
-        //                Console.WriteLine(m_GarageLogic.GetAllVehiclesInformation());
-
-        //                Console.ReadLine();
-        //            }
-        //        }
-        //        catch(Exception e)
-        //        {
-        //            Console.WriteLine(e.Message);
-        //        }
-        //    }
-        //}
 
         public void InflateWheelsToMax()
         {
@@ -127,7 +97,7 @@ namespace Ex03.ConsoleUI
             List<string> licensePlateNumbers;
             Vehicle.eVehicleStatus chosenStatus;
 
-            chosenStatus = m_ConsoleUI.GetStatusFilterFromUser();
+            chosenStatus = m_ConsoleUI.GetVehicleStatusFromUser();
             licensePlateNumbers = m_GarageLogic.GetLicensePlateNumbers(chosenStatus);
 
             m_ConsoleUI.PrintListOfLicenseNumber(licensePlateNumbers, chosenStatus);
@@ -162,9 +132,13 @@ namespace Ex03.ConsoleUI
         public void ChangeVehicleStatus()
         {
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
-            Vehicle.eVehicleStatus newStatus = m_ConsoleUI.GetStatusFilterFromUser();
+
+
+            Vehicle.eVehicleStatus newStatus = m_ConsoleUI.GetVehicleStatusFromUser();
 
             m_GarageLogic.ChangeVehicleGarageStatus(lisenceNumber, newStatus);
+
+            m_ConsoleUI.DisplayVehicleStatusUpdated();
         }
 
 
@@ -208,7 +182,7 @@ namespace Ex03.ConsoleUI
             m_GarageLogic.ValidateAndConfirmVehicleData(newVehicle, modelName, energyUnits, airPressure, vehicleExtraInfo, i_LisenceNumber);
             m_GarageLogic.AddVehicleToGarage(i_LisenceNumber, newVehicle);
 
-            m_ConsoleUI.DisplayNewVehicleAdded(newVehicle);
+            m_ConsoleUI.DisplayNewVehicleAddedWithInRepairStatus(newVehicle);
         }
 
     }

@@ -10,8 +10,15 @@ namespace Ex03.ConsoleUI
     internal class ConsoleUI
     {
         
-        private void pressAnyKeyToReturnToTheMenu()
+        public void DisplayAllAvailableVehicleStatus()
         {
+            Console.WriteLine("Please choose one of the following options:");
+            
+        }
+
+        public void pressAnyKeyToReturnToTheMenu()
+        {
+            Console.WriteLine();
             Console.WriteLine("Press any key to return to the menu...");
             Console.ReadKey();
         }
@@ -25,9 +32,10 @@ namespace Ex03.ConsoleUI
 
         public string GetLicensePlate()
         {
+
+            Console.Clear();
             string licenseNumber;
 
-            
             Console.WriteLine("Please enter the vehicle's license number:");
             licenseNumber = Console.ReadLine();
 
@@ -58,7 +66,7 @@ namespace Ex03.ConsoleUI
         public void DisplayVehicleAlreadyInTheGarage()
         {
             //Console.Clear();
-            Console.WriteLine("Vehicle already in the garage. \nVehicle status has been updated to \"In repair\" ");
+            Console.WriteLine("Vehicle is already in the garage. \nVehicle status has been updated to \"In repair\" ");
             pressAnyKeyToReturnToTheMenu();
         }
 
@@ -136,11 +144,11 @@ namespace Ex03.ConsoleUI
             return Console.ReadLine();
         }
 
-        public void DisplayNewVehicleAdded(Vehicle i_Vehicle)
+        public void DisplayNewVehicleAddedWithInRepairStatus(Vehicle i_Vehicle)
         {
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("New vehicle added to the garage.");
-            Console.WriteLine("Vehicle status has been set to \"inRepair\".");
+            Console.WriteLine("Vehicle status has been set to \"InRepair\".");
 
             pressAnyKeyToReturnToTheMenu();
         }
@@ -192,11 +200,16 @@ namespace Ex03.ConsoleUI
             return wheelsAirPressure;
         }
 
-        //i add do while to this function
-        public Vehicle.eVehicleStatus GetStatusFilterFromUser()
+        public void DisplayVehicleStatusUpdated()
         {
-            //Console.Clear();
-            Console.WriteLine("Enter the status to filter by:");
+            Console.WriteLine();
+            Console.WriteLine("Vehicle status has been updated.");
+            pressAnyKeyToReturnToTheMenu();
+        }
+
+        public Vehicle.eVehicleStatus GetVehicleStatusFromUser()
+        {
+            Console.WriteLine("Enter the status:");
             Array statusValues = Enum.GetValues(typeof(Vehicle.eVehicleStatus));
 
             for (int i = 0; i < statusValues.Length; i++)
