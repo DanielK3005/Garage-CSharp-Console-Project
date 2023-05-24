@@ -122,9 +122,5 @@ namespace Ex03.GarageLogic
             m_VehicleModelName = i_ModelName;
         }
 
-        protected IEnumerable<object> GetEnumValues(Type enumType)
-        {
-            return Enum.GetValues(enumType).Cast<object>();
-        }
     }
 }
