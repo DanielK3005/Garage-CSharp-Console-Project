@@ -25,14 +25,12 @@ namespace Ex03.ConsoleUI
 
         public void DisplayInflatedWheelsToMax()
         {
-            //Console.Clear();
             Console.WriteLine("All the wheels of the vehicle had been inflated to max pressure");
         }
 
         public string GetLicensePlate()
         {
 
-            //Console.Clear();
             string licenseNumber;
 
             Console.WriteLine("Please enter the vehicle's license number:");
@@ -43,7 +41,6 @@ namespace Ex03.ConsoleUI
 
         public void PrintListOfLicenseNumber(List<string> i_LicenseNumbers, Vehicle.eVehicleStatus i_VehicleStatus)
         {
-            //Console.Clear();
             Console.WriteLine("Filtered license numbers by: {0}", i_VehicleStatus.ToString());
 
             if (i_LicenseNumbers.Count() != 0)
@@ -62,7 +59,6 @@ namespace Ex03.ConsoleUI
 
         public void DisplayVehicleAlreadyInTheGarage()
         {
-            //Console.Clear();
             Console.WriteLine("Vehicle is already in the garage. \nVehicle status has been updated to \"In repair\" ");
         }
 
@@ -125,10 +121,10 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, VehicleFactory.eVehicleType i_VehicleType, out string o_ModelName, out float o_EnergyUnits, out float o_AirPressure, out Dictionary<string, string> o_VehicleExtraInfo)
+        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, VehicleFactory.eVehicleType i_VehicleType, out float o_EnergyUnits, out float o_AirPressure, out Dictionary<string, string> o_VehicleExtraInfo)
         {
             VehiclePowerSystem vehiclePowerSystem = i_Vehicle.GetVehiclePowerSystem();
-            CollectCommonVehicleInfoFromUser(i_Vehicle, out o_ModelName, out o_EnergyUnits, out o_AirPressure);
+            CollectCommonVehicleInfoFromUser(i_Vehicle, out o_EnergyUnits, out o_AirPressure);
 
             o_VehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
 
@@ -142,7 +138,6 @@ namespace Ex03.ConsoleUI
 
         public void DisplayNewVehicleAddedWithInRepairStatus(Vehicle i_Vehicle)
         {
-            //Console.Clear();
             Console.WriteLine("New vehicle added to the garage.");
             Console.WriteLine("Vehicle status has been set to \"InRepair\".");
 
@@ -155,13 +150,15 @@ namespace Ex03.ConsoleUI
 
             foreach (KeyValuePair<string, object> property in propertiesDictionary)
             {
+                int listcounter = 0;
                 Console.WriteLine($"Enter the value for {property.Key}:");
                 if(property.Value != null)
                 {
                     Console.WriteLine($"Available options for {property.Key}:");
                     foreach (var option in (Array)property.Value)
                     {
-                        Console.WriteLine(option);
+                        listcounter++;
+                        Console.WriteLine($"{listcounter}.{option}");
                     }
                 }
 
@@ -173,9 +170,8 @@ namespace Ex03.ConsoleUI
             return properties;
         }
 
-        public void CollectCommonVehicleInfoFromUser(Vehicle i_Vehicle, out string i_ModelName, out float i_EnergyUnits, out float i_AirPressure)
+        public void CollectCommonVehicleInfoFromUser(Vehicle i_Vehicle, out float i_EnergyUnits, out float i_AirPressure)
         {
-            i_ModelName = GetFromTheUserTheVehicleModelName();
             i_EnergyUnits = GetFromUserTheAmountEnergyUnitsAvailable(i_Vehicle);
             i_AirPressure = GetAirPressureWheelsFromUser();
         }
@@ -201,13 +197,25 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Vehicle status has been updated.");
         }
 
-        public Vehicle.eVehicleStatus GetVehicleStatusFromUser()
+        public Vehicle.eVehicleStatus GetVehicleStatusFromUser(bool i_WithNoneEnum)
         {
-            Console.WriteLine("Enter the status:");
+            if (i_WithNoneEnum)
+            {
+                Console.WriteLine("Enter the status: (Choose None for all Vehicles in the garage)");
+            }
+            else
+            {
+                Console.WriteLine("Enter the status:");
+            }
+
             Array statusValues = Enum.GetValues(typeof(Vehicle.eVehicleStatus));
 
             for (int i = 0; i < statusValues.Length; i++)
             {
+                if((!i_WithNoneEnum) && (statusValues.GetValue(i).Equals(Vehicle.eVehicleStatus.None)))
+                {
+                    break;
+                }
                 Console.WriteLine($"{i+1}. {statusValues.GetValue(i)}");
             }
 

@@ -10,8 +10,8 @@ namespace Ex03.ConsoleUI
 {
     internal class UiManager
     {
-        ConsoleUI m_ConsoleUI;
-        GarageManager m_GarageLogic;
+        private ConsoleUI m_ConsoleUI;
+        private GarageManager m_GarageLogic;
 
         public UiManager()
         {
@@ -97,7 +97,7 @@ namespace Ex03.ConsoleUI
             List<string> licensePlateNumbers;
             Vehicle.eVehicleStatus chosenStatus;
 
-            chosenStatus = m_ConsoleUI.GetVehicleStatusFromUser();
+            chosenStatus = m_ConsoleUI.GetVehicleStatusFromUser(true);
             licensePlateNumbers = m_GarageLogic.GetLicensePlateNumbers(chosenStatus);
 
             m_ConsoleUI.PrintListOfLicenseNumber(licensePlateNumbers, chosenStatus);
@@ -138,7 +138,7 @@ namespace Ex03.ConsoleUI
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
 
 
-            Vehicle.eVehicleStatus newStatus = m_ConsoleUI.GetVehicleStatusFromUser();
+            Vehicle.eVehicleStatus newStatus = m_ConsoleUI.GetVehicleStatusFromUser(false);
 
             m_GarageLogic.ChangeVehicleGarageStatus(lisenceNumber, newStatus);
 
@@ -165,7 +165,6 @@ namespace Ex03.ConsoleUI
         {
             m_GarageLogic.ChangeVehicleGarageStatus(i_LicenseNumber, Vehicle.eVehicleStatus.InRepair);
             m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
-            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
         public void AddNewVehicle(string i_LisenceNumber)
@@ -179,13 +178,13 @@ namespace Ex03.ConsoleUI
             m_ConsoleUI.DisplayVehicleDoesNotExists();
 
             owner = m_ConsoleUI.GetCustomerDetails();
-            manufacturerWheelName = m_ConsoleUI.GetManufacturerWheelName();
+            modelName = m_ConsoleUI.GetFromTheUserTheVehicleModelName();
 
             m_ConsoleUI.GetVehicleTypeFromUser(out VehicleFactory.eVehicleType vehicleType);
-
+            manufacturerWheelName = m_ConsoleUI.GetManufacturerWheelName();
             newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType, owner, manufacturerWheelName);
 
-            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType, out modelName, out energyUnits, out airPressure, out vehicleExtraInfo);
+            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType, out energyUnits, out airPressure, out vehicleExtraInfo);
             m_GarageLogic.ValidateAndConfirmVehicleData(newVehicle, modelName, energyUnits, airPressure, vehicleExtraInfo, i_LisenceNumber);
             m_GarageLogic.AddVehicleToGarage(i_LisenceNumber, newVehicle);
 
