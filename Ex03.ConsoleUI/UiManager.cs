@@ -89,7 +89,7 @@ namespace Ex03.ConsoleUI
 
             m_GarageLogic.InflateTheWheelsToMax(licensePlateNumber);
 
-
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
         public void DisplayLicenseNumbers()
@@ -101,6 +101,7 @@ namespace Ex03.ConsoleUI
             licensePlateNumbers = m_GarageLogic.GetLicensePlateNumbers(chosenStatus);
 
             m_ConsoleUI.PrintListOfLicenseNumber(licensePlateNumbers, chosenStatus);
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
 
         }
 
@@ -111,6 +112,7 @@ namespace Ex03.ConsoleUI
             float fuelAmout = m_ConsoleUI.GetAmountOfFuelToRefuelFromUser();
 
             m_GarageLogic.RefuelVehicle(lisenceNumber, fuelType, fuelAmout);
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
         public void ChargeVehicle()
@@ -119,6 +121,7 @@ namespace Ex03.ConsoleUI
             float electricityAmount = m_ConsoleUI.GetAmountOfBatteryPercentageToChargeFromUser();
 
             m_GarageLogic.ChargeVehicle(lisenceNumber, electricityAmount);
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
         public void DisplayFullVehicleInformation()
@@ -127,6 +130,7 @@ namespace Ex03.ConsoleUI
             string vehicleInfo= m_GarageLogic.GetVehicleInformation(lisenceNumber);
 
             m_ConsoleUI.DisplayVehicleInformation(vehicleInfo);
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
         public void ChangeVehicleStatus()
@@ -139,6 +143,7 @@ namespace Ex03.ConsoleUI
             m_GarageLogic.ChangeVehicleGarageStatus(lisenceNumber, newStatus);
 
             m_ConsoleUI.DisplayVehicleStatusUpdated();
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
 
@@ -153,12 +158,14 @@ namespace Ex03.ConsoleUI
             {
                 AddNewVehicle(lisenceNumber);
             }
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
         public void ChangeStatusToInRepairForExistingVehicleInGarage(string i_LicenseNumber)
         {
             m_GarageLogic.ChangeVehicleGarageStatus(i_LicenseNumber, Vehicle.eVehicleStatus.InRepair);
             m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
+            m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
         public void AddNewVehicle(string i_LisenceNumber)

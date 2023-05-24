@@ -25,15 +25,14 @@ namespace Ex03.ConsoleUI
 
         public void DisplayInflatedWheelsToMax()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("All the wheels of the vehicle had been inflated to max pressure");
-            pressAnyKeyToReturnToTheMenu();
         }
 
         public string GetLicensePlate()
         {
 
-            Console.Clear();
+            //Console.Clear();
             string licenseNumber;
 
             Console.WriteLine("Please enter the vehicle's license number:");
@@ -44,7 +43,7 @@ namespace Ex03.ConsoleUI
 
         public void PrintListOfLicenseNumber(List<string> i_LicenseNumbers, Vehicle.eVehicleStatus i_VehicleStatus)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Filtered license numbers by: {0}", i_VehicleStatus.ToString());
 
             if (i_LicenseNumbers.Count() != 0)
@@ -59,15 +58,12 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine("No vehicles found!");
             }
 
-            pressAnyKeyToReturnToTheMenu();
-
         }
 
         public void DisplayVehicleAlreadyInTheGarage()
         {
             //Console.Clear();
             Console.WriteLine("Vehicle is already in the garage. \nVehicle status has been updated to \"In repair\" ");
-            pressAnyKeyToReturnToTheMenu();
         }
 
         public void DisplayVehicleInformation(string i_VehicleInformation)
@@ -146,11 +142,10 @@ namespace Ex03.ConsoleUI
 
         public void DisplayNewVehicleAddedWithInRepairStatus(Vehicle i_Vehicle)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("New vehicle added to the garage.");
             Console.WriteLine("Vehicle status has been set to \"InRepair\".");
 
-            pressAnyKeyToReturnToTheMenu();
         }
 
         public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)
@@ -204,7 +199,6 @@ namespace Ex03.ConsoleUI
         {
             Console.WriteLine();
             Console.WriteLine("Vehicle status has been updated.");
-            pressAnyKeyToReturnToTheMenu();
         }
 
         public Vehicle.eVehicleStatus GetVehicleStatusFromUser()
