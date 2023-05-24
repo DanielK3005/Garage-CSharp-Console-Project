@@ -28,29 +28,42 @@ namespace Ex03.GarageLogic
 
         public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
         {
+            int userInput;
+            bool isValidInput;
+
             foreach (KeyValuePair<string, string> property in m_PropertiesDict)
             {
-                if (property.Key == "Color")
+                isValidInput = int.TryParse(property.Value, out userInput);
+                userInput -= 1;
+
+                if (isValidInput)
                 {
-                    if (Enum.TryParse(property.Value, out eCarColor color))
+                    if (property.Key == "Color" )
                     {
-                        m_Color = color;
+                        if (Enum.TryParse(property.Value, out eCarColor color) && Enum.IsDefined(typeof(Car.eCarColor), userInput))
+                        {
+                            m_Color = color;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("You chose invalid choice for car color");
+                        }
                     }
-                    else
+                    else if (property.Key == "NumberOfDoors" )
                     {
-                        throw new ArgumentException("you didnt type correctly one of the options above");
+                        if (Enum.TryParse(property.Value, out eNumberOfDoors numberOfDoors) && Enum.IsDefined(typeof(Car.eNumberOfDoors), userInput))
+                        {
+                            m_NumberOfDoors = numberOfDoors;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("You chose invalid choise for car number of doors");
+                        }
                     }
                 }
-                else if (property.Key == "NumberOfDoors")
+                else
                 {
-                    if (Enum.TryParse(property.Value, out eNumberOfDoors numberOfDoors))
-                    {
-                        m_NumberOfDoors = numberOfDoors;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("you didnt type correctly one of the options above");
-                    }
+                    throw new ArgumentException("you didnt type correctly one of the options above");
                 }
             }
         }

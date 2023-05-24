@@ -28,36 +28,49 @@ namespace Ex03.GarageLogic
 
         public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
         {
+            int userInput;
+            bool isValidInput;
+
             foreach (KeyValuePair<string, string> property in m_PropertiesDict)
             {
-                if (property.Key == "DangerousMaterials")
+                isValidInput = int.TryParse(property.Value, out userInput);
+                userInput -= 1;
+
+                if (isValidInput)
                 {
-                    if (Enum.TryParse(property.Value, out eDangerousMaterials dangerMatrial))
+                    if (property.Key == "DangerousMaterials")
                     {
-                        if (dangerMatrial == eDangerousMaterials.True)
+                        if (Enum.TryParse(property.Value, out eDangerousMaterials dangerMatrial) && Enum.IsDefined(typeof(Truck.eDangerousMaterials), userInput))
                         {
-                            m_DangerousMaterials = true;
+                            if (dangerMatrial == eDangerousMaterials.True)
+                            {
+                                m_DangerousMaterials = true;
+                            }
+                            else if (dangerMatrial == eDangerousMaterials.False)
+                            {
+                                m_DangerousMaterials = false;
+                            }
                         }
-                        else if (dangerMatrial == eDangerousMaterials.False)
+                        else
                         {
-                            m_DangerousMaterials = false;
+                            throw new ArgumentException("you didnt type correctly one of the options above");
                         }
                     }
-                    else
+                    else if (property.Key == "CargoVolume")
                     {
-                        throw new ArgumentException("you didnt type correctly one of the options above");
+                        if (float.TryParse(property.Value, out float CargoVolume))
+                        {
+                            m_CargoVolume = CargoVolume;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("you insert the wrong input type, this field gets float only!");
+                        }
                     }
                 }
-                else if (property.Key == "CargoVolume")
+                else
                 {
-                    if (float.TryParse(property.Value, out float CargoVolume))
-                    {
-                        m_CargoVolume = CargoVolume;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("you insert the wrong input type, this field gets float only!");
-                    }
+                    throw new ArgumentException("you didnt type correctly one of the options above");
                 }
             }
         }

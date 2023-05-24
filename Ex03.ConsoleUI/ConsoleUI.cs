@@ -220,7 +220,7 @@ namespace Ex03.ConsoleUI
             }
 
             int userInput;
-            bool isValidInput = false;
+            bool isValidInput = true;
             do
             {
                 isValidInput = int.TryParse(Console.ReadLine(), out userInput);
@@ -228,10 +228,12 @@ namespace Ex03.ConsoleUI
 
                 if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput))
                 {
+                    isValidInput = true;
                     break;
                 }
 
                 Console.WriteLine("Invalid input. Choose one of the above");
+                isValidInput = false;
             } while (!isValidInput);
 
             return (Vehicle.eVehicleStatus)userInput;

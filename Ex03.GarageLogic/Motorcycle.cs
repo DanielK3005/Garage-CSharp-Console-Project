@@ -29,29 +29,42 @@ namespace Ex03.GarageLogic
 
         public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
         {
+            int userInput;
+            bool isValidInput;
+
             foreach (KeyValuePair<string, string> property in m_PropertiesDict)
             {
-                if (property.Key == "LicenseType")
+                isValidInput = int.TryParse(property.Value, out userInput);
+                userInput -= 1;
+
+                if (isValidInput)
                 {
-                    if (Enum.TryParse(property.Value, out eMotorcycleLicenseType type))
+                    if (property.Key == "LicenseType")
                     {
-                        m_LicenseType = type;
+                        if (Enum.TryParse(property.Value, out eMotorcycleLicenseType type) && Enum.IsDefined(typeof(Motorcycle.eMotorcycleLicenseType), userInput))
+                        {
+                            m_LicenseType = type;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("You chose invalid choice for license type");
+                        }
                     }
-                    else
+                    else if (property.Key == "EngineVolume")
                     {
-                        throw new ArgumentException("you didnt type correctly one of the options above");
+                        if (int.TryParse(property.Value, out int EngineVolume))
+                        {
+                            m_EngineVolume = EngineVolume;
+                        }
+                        else
+                        {
+                            throw new ArgumentException("you insert the wrong input type, this field gets integer only!");
+                        }
                     }
                 }
-                else if (property.Key == "EngineVolume")
+                else
                 {
-                    if (int.TryParse(property.Value, out int EngineVolume))
-                    {
-                        m_EngineVolume = EngineVolume;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("you insert the wrong input type, this field gets integer only!");
-                    }
+                    throw new ArgumentException("you didnt type correctly one of the options above");
                 }
             }
         }

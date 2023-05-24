@@ -137,7 +137,6 @@ namespace Ex03.ConsoleUI
         {
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
 
-
             Vehicle.eVehicleStatus newStatus = m_ConsoleUI.GetVehicleStatusFromUser(false);
 
             m_GarageLogic.ChangeVehicleGarageStatus(lisenceNumber, newStatus);
