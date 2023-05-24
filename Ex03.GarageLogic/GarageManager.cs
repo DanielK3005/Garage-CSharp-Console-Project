@@ -111,6 +111,11 @@ namespace Ex03.GarageLogic
             {
                 Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
 
+                if (vehicle.GetVehiclePowerSystem() is ElectricPowered)
+                {
+                    throw new Exception("ERROR NEED TO BE FIXED");
+                }
+
                 if (vehicle.IsFuelType())
                 {
                     if (vehicle.GetVehiclePowerSystem() is InternalCombustionPowered f)
@@ -130,6 +135,12 @@ namespace Ex03.GarageLogic
             if (IsVehicleInTheGarage(i_LicensedNumber))
             {
                 Vehicle vehicle = m_VehiclesList[i_LicensedNumber];
+
+                if (vehicle.GetVehiclePowerSystem() is InternalCombustionPowered)
+                {
+                    throw new Exception("ERROR NEED TO BE FIXED");
+                }
+
 
                 if (vehicle.IsElectricType())
                 {

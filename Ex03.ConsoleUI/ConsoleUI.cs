@@ -226,7 +226,7 @@ namespace Ex03.ConsoleUI
                 isValidInput = int.TryParse(Console.ReadLine(), out userInput);
                 userInput -= 1;
 
-                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput))
+                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput) && (userInput != (int)Vehicle.eVehicleStatus.None))
                 {
                     isValidInput = true;
                     break;
