@@ -14,10 +14,7 @@ namespace Ex03.GarageLogic
 
         public Motorcycle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Customer, List<Wheel> i_Wheels) : base(i_PowerSystem, i_VehicleType, i_Customer, i_Wheels)
         {
-            m_Properties.Add("LicenseType", null);
-            m_Properties.Add("EngineVolume", null);
 
-            m_PropertiesValidator.Add("LicenseType", GetEnumValues(typeof(eMotorcycleLicenseType)).ToList());
         }
 
         public override Dictionary<string, object> GetPropertiesDictionary()

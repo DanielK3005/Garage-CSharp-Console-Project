@@ -9,16 +9,13 @@ namespace Ex03.GarageLogic
 {
     public class Vehicle
     {
-        private string m_VehicleModelName;
-        private string m_LicenseNumber;
-        private List<Wheel> m_Wheels;
-        private VehicleFactory.eVehicleType m_VehicleType;
-        private float m_EnergyLeftPercentage;
-        private VehiclePowerSystem m_PowerSystem;
-        private Customer m_Customer;
-        public Dictionary<string, object> m_Properties;
-        public Dictionary<string, object> m_PropertiesValidator;
-        public eVehicleStatus m_VehicleStatus;
+        protected string m_VehicleModelName;
+        protected string m_LicenseNumber;
+        protected List<Wheel> m_Wheels;
+        protected VehicleFactory.eVehicleType m_VehicleType;
+        protected VehiclePowerSystem m_PowerSystem;
+        protected Customer m_Customer;
+        protected eVehicleStatus m_VehicleStatus;
 
         public enum eVehicleStatus
         {
@@ -35,25 +32,15 @@ namespace Ex03.GarageLogic
             m_LicenseNumber = null;
             m_Customer = i_Custumer;
             m_Wheels = i_Wheels;
-            m_Properties = new Dictionary<string, object>();
-            m_PropertiesValidator = new Dictionary<string, object>();
         }
 
-        public virtual Dictionary<string, object> GetPropertiesDictionary() 
+        public virtual Dictionary<string, object> GetPropertiesDictionary()
         {
             return new Dictionary<string, object>();
         }
 
-        public virtual void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
-        {
-
-        }
-
-        public Dictionary<string, object> GetProperties()
-        {
-            return m_Properties;
-        }
-
+        public virtual void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict) { }
+       
         public override string ToString()
         {
             return $"License number: {m_LicenseNumber}\nModel name: {m_VehicleModelName}\nOwner name: {m_Customer.GetName()}" +
