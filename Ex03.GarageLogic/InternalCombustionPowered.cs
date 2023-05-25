@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return $"{base.ToString()} fuel type: {m_FuelType.ToString()}";
+            return $"{base.ToString()}, fuel type: {m_FuelType.ToString()}";
         }
     }
 }

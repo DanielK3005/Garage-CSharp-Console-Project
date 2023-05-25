@@ -44,8 +44,8 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             return $"License number: {m_LicenseNumber}\nModel name: {m_VehicleModelName}\nOwner name: {m_Customer.GetName()}" +
-                $"\nVehicle status: {m_VehicleStatus.ToString()}\nVehicle type: {m_VehicleType.ToString()}\nFuel\\Battery situation: {m_PowerSystem.ToString()}" +
-                $"\nWheel situation: {makeWheelsDataString()}";
+                $"\nVehicle status: {m_VehicleStatus.ToString()}\nVehicle type: {m_VehicleType.ToString()}\nFuel\\Battery Properties: {m_PowerSystem.ToString()}" +
+                $"\nWheel Properties: {makeWheelsDataString()}";
         }
 
         private string makeWheelsDataString()

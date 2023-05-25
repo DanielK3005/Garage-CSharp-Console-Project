@@ -25,7 +25,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return $"current amonut: {m_CurrentEnergyAmount} max amount: {m_MaxEnergyAmount}";
+            return $"current amonut: {m_CurrentEnergyAmount}, max amount: {m_MaxEnergyAmount}";
         }
     }
 }

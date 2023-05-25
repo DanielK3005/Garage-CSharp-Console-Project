@@ -52,7 +52,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return $"\nmanufactuer name: {m_ManufacturerName}, current air pressure: {m_CurrentAirPressure}, max air pressure: {m_MaxAirPressure}";
+            return $"\nmanufacturer name: {m_ManufacturerName}, current air pressure: {m_CurrentAirPressure}, max air pressure: {m_MaxAirPressure}";
         }
     }
 }
