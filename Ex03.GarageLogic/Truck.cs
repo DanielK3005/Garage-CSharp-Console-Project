@@ -26,12 +26,12 @@ namespace Ex03.GarageLogic
             return keyValuePairs;
         }
 
-        public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
+        public override void AssignAndValidateProperties(Dictionary<string, string> i_PropertiesDict)
         {
             int userInput;
             bool isValidInput;
 
-            foreach (KeyValuePair<string, string> property in m_PropertiesDict)
+            foreach (KeyValuePair<string, string> property in i_PropertiesDict)
             {
                 isValidInput = int.TryParse(property.Value, out userInput);
                 userInput -= 1;
@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
                 {
                     if (property.Key == "DangerousMaterials")
                     {
-                        if (Enum.TryParse(property.Value, out eDangerousMaterials dangerMatrial) && Enum.IsDefined(typeof(Truck.eDangerousMaterials), userInput))
+                        if (Enum.IsDefined(typeof(Truck.eDangerousMaterials), userInput) && Enum.TryParse(userInput.ToString(), out eDangerousMaterials dangerMatrial))
                         {
                             if (dangerMatrial == eDangerousMaterials.True)
                             {

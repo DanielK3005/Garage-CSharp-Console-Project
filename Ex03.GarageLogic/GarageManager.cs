@@ -113,7 +113,7 @@ namespace Ex03.GarageLogic
 
                 if (vehicle.GetVehiclePowerSystem() is ElectricPowered)
                 {
-                    throw new Exception("ERROR NEED TO BE FIXED");
+                    throw new WrongEnergySourceException();
                 }
 
                 if (vehicle.IsFuelType())
@@ -138,7 +138,7 @@ namespace Ex03.GarageLogic
 
                 if (vehicle.GetVehiclePowerSystem() is InternalCombustionPowered)
                 {
-                    throw new Exception("ERROR NEED TO BE FIXED");
+                    throw new WrongEnergySourceException();
                 }
 
 
@@ -161,6 +161,5 @@ namespace Ex03.GarageLogic
         {
             m_VehiclesList.Add(i_LisenceNumber, i_Vehicle);
         }
-        
     }
 }

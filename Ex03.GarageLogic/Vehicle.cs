@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
             return new Dictionary<string, object>();
         }
 
-        public virtual void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict) { }
+        public virtual void AssignAndValidateProperties(Dictionary<string, string> i_PropertiesDict) { }
        
         public override string ToString()
         {
@@ -115,11 +115,6 @@ namespace Ex03.GarageLogic
         public VehiclePowerSystem GetVehiclePowerSystem()
         {
             return m_PowerSystem;
-        }
-
-        public void setVehicleModelName(string i_ModelName)
-        {
-            m_VehicleModelName = i_ModelName;
         }
 
     }

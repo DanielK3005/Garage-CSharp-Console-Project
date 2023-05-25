@@ -27,12 +27,12 @@ namespace Ex03.GarageLogic
             return keyValuePairs;
         }
 
-        public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
+        public override void AssignAndValidateProperties(Dictionary<string, string> i_PropertiesDict)
         {
             int userInput;
             bool isValidInput;
 
-            foreach (KeyValuePair<string, string> property in m_PropertiesDict)
+            foreach (KeyValuePair<string, string> property in i_PropertiesDict)
             {
                 isValidInput = int.TryParse(property.Value, out userInput);
                 userInput -= 1;
@@ -41,7 +41,7 @@ namespace Ex03.GarageLogic
                 {
                     if (property.Key == "LicenseType")
                     {
-                        if (Enum.TryParse(property.Value, out eMotorcycleLicenseType type) && Enum.IsDefined(typeof(Motorcycle.eMotorcycleLicenseType), userInput))
+                        if (Enum.IsDefined(typeof(Motorcycle.eMotorcycleLicenseType), userInput) && Enum.TryParse(userInput.ToString(), out eMotorcycleLicenseType type))
                         {
                             m_LicenseType = type;
                         }

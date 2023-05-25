@@ -26,12 +26,12 @@ namespace Ex03.GarageLogic
             return keyValuePairs;
         }
 
-        public override void AssignAndValidateProperties(Dictionary<string, string> m_PropertiesDict)
+        public override void AssignAndValidateProperties(Dictionary<string, string> i_PropertiesDict)
         {
             int userInput;
             bool isValidInput;
 
-            foreach (KeyValuePair<string, string> property in m_PropertiesDict)
+            foreach (KeyValuePair<string, string> property in i_PropertiesDict)
             {
                 isValidInput = int.TryParse(property.Value, out userInput);
                 userInput -= 1;
@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
                 {
                     if (property.Key == "Color" )
                     {
-                        if (Enum.TryParse(property.Value, out eCarColor color) && Enum.IsDefined(typeof(Car.eCarColor), userInput))
+                        if (Enum.IsDefined(typeof(Car.eCarColor), userInput) && Enum.TryParse(userInput.ToString(), out eCarColor color))
                         {
                             m_Color = color;
                         }
@@ -51,7 +51,7 @@ namespace Ex03.GarageLogic
                     }
                     else if (property.Key == "NumberOfDoors" )
                     {
-                        if (Enum.TryParse(property.Value, out eNumberOfDoors numberOfDoors) && Enum.IsDefined(typeof(Car.eNumberOfDoors), userInput))
+                        if (Enum.IsDefined(typeof(Car.eNumberOfDoors), userInput) && Enum.TryParse(userInput.ToString(), out eNumberOfDoors numberOfDoors))
                         {
                             m_NumberOfDoors = numberOfDoors;
                         }

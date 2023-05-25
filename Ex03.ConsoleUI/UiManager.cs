@@ -45,25 +45,25 @@ namespace Ex03.ConsoleUI
                     switch (input)
                     {
                         case "1":
-                            AddVehicleIfNotExist();
+                            addVehicleIfNotExist();
                             break;
                         case "2":
-                            DisplayLicenseNumbers();
+                            displayLicenseNumbers();
                             break;
                         case "3":
-                            ChangeVehicleStatus();
+                            changeVehicleStatus();
                             break;
                         case "4":
-                            InflateWheelsToMax();
+                            inflateWheelsToMax();
                             break;
                         case "5":
-                            RefuelVehicle();
+                            refuelVehicle();
                             break;
                         case "6":
-                            ChargeVehicle();
+                            chargeVehicle();
                             break;
                         case "7":
-                            DisplayFullVehicleInformation();
+                            displayFullVehicleInformation();
                             break;
                         case "8":
                             exit = true;
@@ -83,16 +83,18 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        public void InflateWheelsToMax()
+        private void inflateWheelsToMax()
         {
             string licensePlateNumber = m_ConsoleUI.GetLicensePlate();
 
             m_GarageLogic.InflateTheWheelsToMax(licensePlateNumber);
 
+            m_ConsoleUI.DisplayInflatedWheelsToMax();
+
             m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
-        public void DisplayLicenseNumbers()
+        private void displayLicenseNumbers()
         {
             List<string> licensePlateNumbers;
             Vehicle.eVehicleStatus chosenStatus;
@@ -105,26 +107,28 @@ namespace Ex03.ConsoleUI
 
         }
 
-        public void RefuelVehicle()
+        private void refuelVehicle()
         {
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
             InternalCombustionPowered.eFuelType fuelType = m_ConsoleUI.GetFromUserFuelTypeForRefuel();
             float fuelAmout = m_ConsoleUI.GetAmountOfFuelToRefuelFromUser();
 
             m_GarageLogic.RefuelVehicle(lisenceNumber, fuelType, fuelAmout);
+            m_ConsoleUI.DisplayRefuelSucceeded();
             m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
-        public void ChargeVehicle()
+        private void chargeVehicle()
         {
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
             float electricityAmount = m_ConsoleUI.GetAmountOfBatteryPercentageToChargeFromUser();
 
             m_GarageLogic.ChargeVehicle(lisenceNumber, electricityAmount);
+            m_ConsoleUI.DisplayChargeSucceeded();
             m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
-        public void DisplayFullVehicleInformation()
+        private void displayFullVehicleInformation()
         {
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
             string vehicleInfo= m_GarageLogic.GetVehicleInformation(lisenceNumber);
@@ -133,7 +137,7 @@ namespace Ex03.ConsoleUI
             m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
-        public void ChangeVehicleStatus()
+        private void changeVehicleStatus()
         {
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
 
@@ -146,27 +150,27 @@ namespace Ex03.ConsoleUI
         }
 
 
-        public void AddVehicleIfNotExist()
+        private void addVehicleIfNotExist()
         {
             string lisenceNumber = m_ConsoleUI.GetLicensePlate();
             if (m_GarageLogic.IsVehicleInTheGarage(lisenceNumber))
             {
-                ChangeStatusToInRepairForExistingVehicleInGarage(lisenceNumber);
+                changeStatusToInRepairForExistingVehicleInGarage(lisenceNumber);
             }
             else
             {
-                AddNewVehicle(lisenceNumber);
+                addNewVehicle(lisenceNumber);
             }
             m_ConsoleUI.pressAnyKeyToReturnToTheMenu();
         }
 
-        public void ChangeStatusToInRepairForExistingVehicleInGarage(string i_LicenseNumber)
+        private void changeStatusToInRepairForExistingVehicleInGarage(string i_LicenseNumber)
         {
             m_GarageLogic.ChangeVehicleGarageStatus(i_LicenseNumber, Vehicle.eVehicleStatus.InRepair);
             m_ConsoleUI.DisplayVehicleAlreadyInTheGarage();
         }
 
-        public void AddNewVehicle(string i_LisenceNumber)
+        private void addNewVehicle(string i_LisenceNumber)
         {
             Vehicle newVehicle;
             Customer owner;
@@ -183,11 +187,11 @@ namespace Ex03.ConsoleUI
             manufacturerWheelName = m_ConsoleUI.GetManufacturerWheelName();
             newVehicle = m_GarageLogic.CreateNewVehicle(vehicleType, owner, manufacturerWheelName);
 
-            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, vehicleType, out energyUnits, out airPressure, out vehicleExtraInfo);
+            m_ConsoleUI.GetVehicleInfoFromUser(newVehicle, out energyUnits, out airPressure, out vehicleExtraInfo);
             m_GarageLogic.ValidateAndConfirmVehicleData(newVehicle, modelName, energyUnits, airPressure, vehicleExtraInfo, i_LisenceNumber);
             m_GarageLogic.AddVehicleToGarage(i_LisenceNumber, newVehicle);
 
-            m_ConsoleUI.DisplayNewVehicleAddedWithInRepairStatus(newVehicle);
+            m_ConsoleUI.DisplayNewVehicleAddedWithInRepairStatus();
         }
 
     }

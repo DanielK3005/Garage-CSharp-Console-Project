@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
     public class VehicleFactory
     {
         private const float k_ElectricCarMaxBatteryAmount = 5.2f; 
-        private const float k_FuelCarMaxTankSize = 45;
+        private const float k_FuelCarMaxTankSize = 46;
         private const float k_FuelTruckMaxTankSize = 135;
         private const float k_ElectricMotorcycleMaxBatteryAmount = 2.6f;
         private const float k_FuelMotorcycleMaxTankSize = 6.4f;

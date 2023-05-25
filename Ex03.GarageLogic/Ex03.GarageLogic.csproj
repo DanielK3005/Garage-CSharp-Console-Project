@@ -52,6 +52,7 @@
     <Compile Include="VehicleFactory.cs" />
     <Compile Include="VehiclePowerSystem.cs" />
     <Compile Include="Wheel.cs" />
+    <Compile Include="WrongEnergySourceException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Vehicle.cs" />

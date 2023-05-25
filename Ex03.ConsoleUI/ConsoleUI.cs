@@ -9,13 +9,6 @@ namespace Ex03.ConsoleUI
 {
     internal class ConsoleUI
     {
-        
-        public void DisplayAllAvailableVehicleStatus()
-        {
-            Console.WriteLine("Please choose one of the following options:");
-            
-        }
-
         public void pressAnyKeyToReturnToTheMenu()
         {
             Console.WriteLine();
@@ -26,6 +19,16 @@ namespace Ex03.ConsoleUI
         public void DisplayInflatedWheelsToMax()
         {
             Console.WriteLine("All the wheels of the vehicle had been inflated to max pressure");
+        }
+
+        public void DisplayRefuelSucceeded()
+        {
+            Console.WriteLine("The Vehicle refuled successfully!");
+        }
+
+        public void DisplayChargeSucceeded()
+        {
+            Console.WriteLine("The Vehicle charged successfully!");
         }
 
         public string GetLicensePlate()
@@ -59,7 +62,7 @@ namespace Ex03.ConsoleUI
 
         public void DisplayVehicleAlreadyInTheGarage()
         {
-            Console.WriteLine("Vehicle is already in the garage. \nVehicle status has been updated to \"In repair\" ");
+            Console.WriteLine("Vehicle is already in the garage. \nVehicle status has been updated to \"In Repair\" ");
         }
 
         public void DisplayVehicleInformation(string i_VehicleInformation)
@@ -79,20 +82,21 @@ namespace Ex03.ConsoleUI
         {
             string nameInput, phoneInput;
 
-            Console.WriteLine("what is your name?");
+            Console.WriteLine("What is your name?");
             nameInput = Console.ReadLine();
-            Console.WriteLine("what is your phone number?");
+
+            Console.WriteLine("What is your phone number?");
             phoneInput = Console.ReadLine();
 
             return new Customer(nameInput, phoneInput);
         }
 
-        public void GetVehicleTypeFromUser(out VehicleFactory.eVehicleType vehicleType)
+        public void GetVehicleTypeFromUser(out VehicleFactory.eVehicleType o_VehicleType)
         {
             do
             {
                 Console.WriteLine("Enter the vehicle type:");
-                PrintListOfVehicleTypes();
+                printListOfVehicleTypes();
 
                 int userInput;
                 bool isValidInput = int.TryParse(Console.ReadLine(), out userInput);
@@ -101,7 +105,7 @@ namespace Ex03.ConsoleUI
 
                 if (isValidInput && Enum.IsDefined(typeof(VehicleFactory.eVehicleType), userInput))
                 {
-                    vehicleType = (VehicleFactory.eVehicleType)userInput;
+                    o_VehicleType = (VehicleFactory.eVehicleType)userInput;
                     break;
                 }
 
@@ -110,7 +114,7 @@ namespace Ex03.ConsoleUI
         }
 
 
-        public void PrintListOfVehicleTypes()
+        private void printListOfVehicleTypes()
         {
             int listItemCounter = 1;
 
@@ -121,29 +125,27 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, VehicleFactory.eVehicleType i_VehicleType, out float o_EnergyUnits, out float o_AirPressure, out Dictionary<string, string> o_VehicleExtraInfo)
+        public void GetVehicleInfoFromUser(Vehicle i_Vehicle, out float o_EnergyUnits, out float o_AirPressure, out Dictionary<string, string> o_VehicleExtraInfo)
         {
-            VehiclePowerSystem vehiclePowerSystem = i_Vehicle.GetVehiclePowerSystem();
-            CollectCommonVehicleInfoFromUser(i_Vehicle, out o_EnergyUnits, out o_AirPressure);
+            collectCommonVehicleInfoFromUser(i_Vehicle, out o_EnergyUnits, out o_AirPressure);
 
-            o_VehicleExtraInfo = GetFurtherVehicleInfo(i_Vehicle);
-
+            o_VehicleExtraInfo = getFurtherVehicleInfo(i_Vehicle);
         }
 
         public string GetManufacturerWheelName()
         {
-            Console.WriteLine("what is the name of your vehicle wheels manufacturer?");
+            Console.WriteLine("What is the name of your vehicle wheels manufacturer?");
             return Console.ReadLine();
         }
 
-        public void DisplayNewVehicleAddedWithInRepairStatus(Vehicle i_Vehicle)
+        public void DisplayNewVehicleAddedWithInRepairStatus()
         {
             Console.WriteLine("New vehicle added to the garage.");
             Console.WriteLine("Vehicle status has been set to \"InRepair\".");
 
         }
 
-        public Dictionary<string, string> GetFurtherVehicleInfo(Vehicle i_Vehicle)
+        private Dictionary<string, string> getFurtherVehicleInfo(Vehicle i_Vehicle)
         {
             Dictionary<string, string> properties = new Dictionary<string, string>();
             Dictionary<string, object> propertiesDictionary = i_Vehicle.GetPropertiesDictionary();
@@ -170,18 +172,18 @@ namespace Ex03.ConsoleUI
             return properties;
         }
 
-        public void CollectCommonVehicleInfoFromUser(Vehicle i_Vehicle, out float i_EnergyUnits, out float i_AirPressure)
+        private void collectCommonVehicleInfoFromUser(Vehicle i_Vehicle, out float o_EnergyUnits, out float o_AirPressure)
         {
-            i_EnergyUnits = GetFromUserTheAmountEnergyUnitsAvailable(i_Vehicle);
-            i_AirPressure = GetAirPressureWheelsFromUser();
+            o_EnergyUnits = getFromUserTheAmountEnergyUnitsAvailable(i_Vehicle);
+            o_AirPressure = getAirPressureWheelsFromUser();
         }
 
-        public float GetAirPressureWheelsFromUser()
+        private float getAirPressureWheelsFromUser()
         {
             string input;
             float wheelsAirPressure;
 
-            Console.WriteLine("what is your wheels air pressure? (insert one number which indicates your vehicle wheels air pressure)");
+            Console.WriteLine("What is your wheels air pressure? (insert one number which indicates your vehicle wheels air pressure)");
             input = Console.ReadLine();
 
             if(!float.TryParse(input, out wheelsAirPressure))
@@ -220,28 +222,32 @@ namespace Ex03.ConsoleUI
             }
 
             int userInput;
-            bool isValidInput = true;
+            bool isValidInput = false;
             do
             {
                 isValidInput = int.TryParse(Console.ReadLine(), out userInput);
                 userInput -= 1;
 
-                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput) && (userInput != (int)Vehicle.eVehicleStatus.None))
+                if (isValidInput && Enum.IsDefined(typeof(Vehicle.eVehicleStatus), userInput))
                 {
+                    if ((i_WithNoneEnum) && (userInput == (int)Vehicle.eVehicleStatus.None))
+                    {
+                        break;
+                    }
+
                     isValidInput = true;
                     break;
                 }
-
-                Console.WriteLine("Invalid input. Choose one of the above");
                 isValidInput = false;
+                Console.WriteLine("Invalid input. Choose one of the above");
             } while (!isValidInput);
 
             return (Vehicle.eVehicleStatus)userInput;
         }
 
-        public float GetFromUserTheAmountEnergyUnitsAvailable(Vehicle i_vehicle)
+        private float getFromUserTheAmountEnergyUnitsAvailable(Vehicle i_Vehicle)
         {
-            VehiclePowerSystem vehiclePowerSystem = i_vehicle.GetVehiclePowerSystem();
+            VehiclePowerSystem vehiclePowerSystem = i_Vehicle.GetVehiclePowerSystem();
             float EnergySourceUnitsAvailable;
             string input;
 
