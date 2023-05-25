@@ -25,12 +25,12 @@ namespace Ex03.GarageLogic
             None
         }
 
-        public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Custumer, List<Wheel> i_Wheels)
+        public Vehicle(VehiclePowerSystem i_PowerSystem, VehicleFactory.eVehicleType i_VehicleType, Customer i_Customer, List<Wheel> i_Wheels)
         {
             m_PowerSystem = i_PowerSystem;
             m_VehicleType = i_VehicleType;
             m_LicenseNumber = null;
-            m_Customer = i_Custumer;
+            m_Customer = i_Customer;
             m_Wheels = i_Wheels;
         }
 
@@ -63,12 +63,12 @@ namespace Ex03.GarageLogic
             return m_VehicleStatus;
         }
 
-        public void ValidateAndAsignCommonData(string i_ModelName, float i_EnergyUnits, float i_AirPressure, string i_LisenceNumber)
+        public void ValidateAndAsignCommonData(string i_ModelName, float i_EnergyUnits, float i_AirPressure, string i_LicenseNumber)
         {
             
             m_VehicleModelName = i_ModelName;
             m_VehicleStatus = eVehicleStatus.InRepair;
-            m_LicenseNumber = i_LisenceNumber;
+            m_LicenseNumber = i_LicenseNumber;
             
 
             if(m_PowerSystem is ElectricPowered electric)

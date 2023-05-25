@@ -56,9 +56,9 @@ namespace Ex03.GarageLogic
             return vehicle;
         }
 
-        public void ValidateAndConfirmVehicleData(Vehicle i_Vehicle, string i_ModelName, float i_EnergyUnits, float i_AirPressure, Dictionary<string, string> i_FurtherInfo, string i_LisenceNumber)
+        public void ValidateAndConfirmVehicleData(Vehicle i_Vehicle, string i_ModelName, float i_EnergyUnits, float i_AirPressure, Dictionary<string, string> i_FurtherInfo, string i_LicenseNumber)
         {
-            i_Vehicle.ValidateAndAsignCommonData(i_ModelName, i_EnergyUnits, i_AirPressure, i_LisenceNumber);
+            i_Vehicle.ValidateAndAsignCommonData(i_ModelName, i_EnergyUnits, i_AirPressure, i_LicenseNumber);
             i_Vehicle.AssignAndValidateProperties(i_FurtherInfo);
         }
 
@@ -157,9 +157,9 @@ namespace Ex03.GarageLogic
 
         }
 
-        public void AddVehicleToGarage(string i_LisenceNumber, Vehicle i_Vehicle)
+        public void AddVehicleToGarage(string i_LicenseNumber, Vehicle i_Vehicle)
         {
-            m_VehiclesList.Add(i_LisenceNumber, i_Vehicle);
+            m_VehiclesList.Add(i_LicenseNumber, i_Vehicle);
         }
     }
 }
